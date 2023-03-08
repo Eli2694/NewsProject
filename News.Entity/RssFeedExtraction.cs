@@ -4,28 +4,23 @@ using News.Entity.Base;
 using News.Model;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.ServiceModel.Syndication;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace News.Entity.Websites
+namespace News.Entity
 {
-    public class Globes :  RssFeedExtraction, IWebsite
+    public abstract class RssFeedExtraction : BaseEntity
     {
-
         private LogManager _logger;
-        public Globes(LogManager log):base(log)
+        public RssFeedExtraction(LogManager log) : base(log)
         {
             _logger = LogInstance;
         }
 
-
-        public override void FeedExtraction(XmlDocument xmlDoc, Category category)
+        public virtual void FeedExtraction(XmlDocument xmlDoc, Category category)
         {
             try
             {
@@ -33,15 +28,15 @@ namespace News.Entity.Websites
 
                 XmlNamespaceManager nsmgr = new XmlNamespaceManager(xmlDoc.NameTable);
                 XmlNodeList itemNodes = xmlDoc.SelectNodes("//item");
-                
+
                 foreach (XmlNode itemNode in itemNodes)
                 {
                     var newArticle = new Article()
                     {
-                        Title = itemNode.SelectSingleNode("title").InnerText,
+                        Title = itemNode.SelectSingleNode("title").InnerText.Trim(),
                         Description = ExtractClearDescriptionFromItem(itemNode),
-                        ArticleLink = itemNode.SelectSingleNode("link").InnerText,
-                        Image = ExtractImageFromItem(itemNode, nsmgr),
+                        ArticleLink = itemNode.SelectSingleNode("link").InnerText.Trim(),
+                        Image = ExtractImageFromItem(itemNode),
                         CategoryID = category.Id,
                         Source = category.Source,
                         Guid = $"{itemNode.SelectSingleNode("title").InnerText}:{itemNode.SelectSingleNode("pubDate").InnerText}",
@@ -50,11 +45,11 @@ namespace News.Entity.Websites
 
                     // Add to database
 
-                    if(!DataLayer.Data.Article.Any(article=>article.Guid == newArticle.Guid))
+                    if (!DataLayer.Data.Article.Any(article => article.Guid == newArticle.Guid))
                     {
                         DataLayer.Data.ArticleRepository.Insert(newArticle);
                     }
-                    
+
                 }
             }
             catch (ArgumentException ex)
@@ -70,16 +65,23 @@ namespace News.Entity.Websites
 
         }
 
-        private string ExtractImageFromItem(XmlNode itemNode, XmlNamespaceManager nsmgr)
-        {       
-            nsmgr.AddNamespace("media", "http://search.yahoo.com/mrss/");
-
-            // Select the media:content element and retrieve its 'url' attribute value
-            XmlNode mediaNode = itemNode.SelectSingleNode(".//media:content[@type='image/jpg']", nsmgr);
-            return mediaNode?.Attributes["url"]?.Value;
+        public virtual string ExtractImageFromItem(XmlNode itemNode)
+        {
+            XmlNode descriptionNode = itemNode.SelectSingleNode("description");
+            if (descriptionNode != null)
+            {
+                string description = descriptionNode.InnerText;
+                // Regular expressions
+                Match match = Regex.Match(description, @"<img.+?src=[\""'](.+?)[\""'].*?>");
+                if (match.Success)
+                {
+                    return match.Groups[1].Value;
+                }
+            }
+            return null;
         }
 
-        public override string ExtractClearDescriptionFromItem(XmlNode itemNode)
+        public virtual string ExtractClearDescriptionFromItem(XmlNode itemNode)
         {
             string plainText;
             XmlNode descriptionNode = itemNode.SelectSingleNode("description");
@@ -87,8 +89,7 @@ namespace News.Entity.Websites
             {
                 string description = descriptionNode.InnerText;
                 // Regular expressions
-                plainText = Regex.Replace(description, @"&#\d+;", string.Empty);
-                plainText = Regex.Replace(plainText, @"[^א-תa-zA-Z0-9\s.,״׳""']", string.Empty);
+                plainText = Regex.Replace(description, "<.*?>", string.Empty);
                 return plainText.Trim();
             }
             return null;
