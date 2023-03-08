@@ -1,0 +1,17 @@
+C:\Users\User\source\repos\News\News.DAL\bin\Debug\net6.0\News.DAL.deps.json
+C:\Users\User\source\repos\News\News.DAL\bin\Debug\net6.0\News.DAL.runtimeconfig.json
+C:\Users\User\source\repos\News\News.DAL\bin\Debug\net6.0\News.DAL.dll
+C:\Users\User\source\repos\News\News.DAL\bin\Debug\net6.0\News.DAL.pdb
+C:\Users\User\source\repos\News\News.DAL\bin\Debug\net6.0\News.Model.dll
+C:\Users\User\source\repos\News\News.DAL\bin\Debug\net6.0\News.Model.pdb
+C:\Users\User\source\repos\News\News.DAL\obj\Debug\net6.0\News.DAL.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\News\News.DAL\obj\Debug\net6.0\News.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\News\News.DAL\obj\Debug\net6.0\News.DAL.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\News\News.DAL\obj\Debug\net6.0\News.DAL.AssemblyInfo.cs
+C:\Users\User\source\repos\News\News.DAL\obj\Debug\net6.0\News.DAL.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\News\News.DAL\obj\Debug\net6.0\News.DAL.csproj.CopyComplete
+C:\Users\User\source\repos\News\News.DAL\obj\Debug\net6.0\News.DAL.dll
+C:\Users\User\source\repos\News\News.DAL\obj\Debug\net6.0\refint\News.DAL.dll
+C:\Users\User\source\repos\News\News.DAL\obj\Debug\net6.0\News.DAL.pdb
+C:\Users\User\source\repos\News\News.DAL\obj\Debug\net6.0\News.DAL.genruntimeconfig.cache
+C:\Users\User\source\repos\News\News.DAL\obj\Debug\net6.0\ref\News.DAL.dll

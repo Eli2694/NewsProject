@@ -1,0 +1,12 @@
+C:\Users\User\source\repos\News\News.Model\bin\Debug\net6.0\News.Model.deps.json
+C:\Users\User\source\repos\News\News.Model\bin\Debug\net6.0\News.Model.dll
+C:\Users\User\source\repos\News\News.Model\bin\Debug\net6.0\News.Model.pdb
+C:\Users\User\source\repos\News\News.Model\obj\Debug\net6.0\News.Model.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\News\News.Model\obj\Debug\net6.0\News.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\News\News.Model\obj\Debug\net6.0\News.Model.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\News\News.Model\obj\Debug\net6.0\News.Model.AssemblyInfo.cs
+C:\Users\User\source\repos\News\News.Model\obj\Debug\net6.0\News.Model.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\News\News.Model\obj\Debug\net6.0\News.Model.dll
+C:\Users\User\source\repos\News\News.Model\obj\Debug\net6.0\refint\News.Model.dll
+C:\Users\User\source\repos\News\News.Model\obj\Debug\net6.0\News.Model.pdb
+C:\Users\User\source\repos\News\News.Model\obj\Debug\net6.0\ref\News.Model.dll
