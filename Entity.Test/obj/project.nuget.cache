@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ICdHfqNJ4DsxaT//GrmkzOkXJ+a/Pf1z3Y3ZjQIRc0SQQHPxEJHz59s/rLp0wwuiqjsnTfunsWFiVOt0NtVv9g==",
+  "dgSpecHash": "5PUOUI1qIEFpP1oAgKDX5y1y2LOQlJOjhH3HUdeG4mF11XoWVTpZFWqXNylU1BKrpga5pjjxbSQ/YBpcXLJ+qg==",
   "success": true,
   "projectFilePath": "C:\\Users\\User\\source\\repos\\News\\Entity.Test\\Entity.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\fluentassertions\\6.10.0\\fluentassertions.6.10.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.codecoverage\\17.5.0\\microsoft.codecoverage.17.5.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.net.test.sdk\\17.5.0\\microsoft.net.test.sdk.17.5.0.nupkg.sha512",

@@ -24,28 +24,37 @@ namespace News.Entity
         {
             _logger = LogInstance; // LogInstance from BaseNews
 
-            InitFeeds();
+            Task.Run(InitFeeds);
         }
 
         private void InitFeeds()
         {
+
+            _logger.AddLogItemToQueue("Get Rss Feeds And Send Http Request For Information About News", null, "Event");
+
             try
             {
-
-                _categories = DataLayer.Data.CategoryRepository.GetAll();
-
-                if( _categories != null )
+                while (true) 
                 {
-                    foreach (var category in _categories)
+                    _categories = DataLayer.Data.CategoryRepository.GetAll();
+
+                    if (_categories != null)
                     {
-                        GetXmlData(category);
+                        foreach (var category in _categories)
+                        {
+                            GetXmlData(category);
+                        }
+
+                        Thread.Sleep(1000 * 60 * 60);
+
                     }
+                    else
+                    {
+                        _logger.AddLogItemToQueue("Can't find categories", null, "Error");
+                    }
+                }
+
                 
-                }
-                else
-                {
-                    _logger.AddLogItemToQueue("Can't find categories", null, "Error");
-                }
 
                 
             }

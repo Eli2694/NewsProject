@@ -37,13 +37,32 @@ namespace News.DAL
         
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await _dbSet.ToListAsync();
+            try
+            {
+                return await _dbSet.ToListAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
         
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _dbSet.ToList();
+            try
+            {
+                return _dbSet.ToList();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            
         }
 
 
@@ -51,12 +70,32 @@ namespace News.DAL
          
         public async Task<TEntity> GetByIdAsync(int id)
         {
-            return await _dbSet.FindAsync(id);
+            try
+            {
+                return await _dbSet.FindAsync(id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            
         }
         
         public TEntity GetById(int id)
         {
-            return _dbSet.Find(id);
+            try
+            {
+                return _dbSet.Find(id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            
         }
 
         //async
@@ -68,10 +107,20 @@ namespace News.DAL
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            await Task.Run(() => {
-                _dbSet.Add(entity);
-                _context.SaveChanges();
-            });
+            try
+            {
+                await Task.Run(() => {
+                    _dbSet.Add(entity);
+                    _context.SaveChanges();
+                });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            
         }
         
 
@@ -82,8 +131,18 @@ namespace News.DAL
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            _dbSet.Add(entity);
-            _context.SaveChanges();
+            try
+            {
+                _dbSet.Add(entity);
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            
         }
 
         // async 
@@ -95,9 +154,19 @@ namespace News.DAL
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            // the entity parameter is already updated with new information. 
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            try
+            {
+                // the entity parameter is already updated with new information. 
+                _context.Entry(entity).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+           
         }
        
         public void Update(TEntity entity)
@@ -107,39 +176,56 @@ namespace News.DAL
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            // the entity parameter ia already updated with new information. 
-            _context.Entry(entity).State = EntityState.Modified;
-            _context.SaveChanges();
+            try
+            {
+                // the entity parameter ia already updated with new information. 
+                _context.Entry(entity).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+           
         }
 
         //async
         
         public async Task DeleteAsync(int id)
         {
-            TEntity entityToDelete = await _dbSet.FindAsync(id);
-            _dbSet.Remove(entityToDelete);
-            await _context.SaveChangesAsync();
+            try
+            {
+                TEntity entityToDelete = await _dbSet.FindAsync(id);
+                _dbSet.Remove(entityToDelete);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            
         }
         
         public void Delete(int id)
         {
-            TEntity entityToDelete = _dbSet.Find(id);
-            _dbSet.Remove(entityToDelete);
-            _context.SaveChanges();
-        }
-    }
+            try
+            {
+                TEntity entityToDelete = _dbSet.Find(id);
+                _dbSet.Remove(entityToDelete);
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
 
-    // example of implamintation of this functions from the layer above:
-    /*
-    public async Task<IActionResult> Get(int id)
-    {
-        var entity = await _repository.GetByIdAsync(id);
-        if (entity == null)
-        {
-            return NotFound();
+                throw;
+            }
+
+           
         }
-        return Ok(entity);
     }
-    */
 
 }

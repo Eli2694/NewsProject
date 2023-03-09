@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Logger;
+using News.DAL;
 using News.Entity.Websites;
 using static Logger.LogManager;
 
@@ -16,6 +17,14 @@ namespace News.Entity
         public ManageRssFeeds? Feeds { get; set; }
 
         public Globes Globes { get; set; }
+
+        public Maariv Maariv { get; set; }
+
+        public Ynet Ynet { get; set; }
+
+        public Walla Walla { get; set; }
+
+        public DataLayer DataLayer { get; set; }
 
         //constructor
         private MainManager()
@@ -32,12 +41,18 @@ namespace News.Entity
 
         private void init()
         {
+
+            DataLayer = DataLayer.Data;
+
             Target(LogProvider.File);
             Log = new LogManager();
 
             Feeds = new ManageRssFeeds(Log);
 
             Globes = new Globes(Log);
+            Maariv = new Maariv(Log); 
+            Ynet = new Ynet(Log);
+            Walla = new Walla(Log);
 
 
         }

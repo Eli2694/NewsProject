@@ -11,10 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\News.Entity\News.Entity.csproj" />
     <ProjectReference Include="..\News.Model\News.Model.csproj" />
   </ItemGroup>

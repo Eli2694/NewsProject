@@ -9,14 +9,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using FluentAssertions;
 
 namespace Entity.Test
 {
     public class WallaTest
     {
 
+        [Test, SetUp]
+        [Category("Database")]
+        public void CleanDB()
+        {
+            var articleList = DataLayer.Data.ArticleRepository.GetAll();
+            DataLayer.Data.Article.RemoveRange(articleList);
+        }
 
-        [Test, Order(1)]
+        [Test, Order(0)]
         [Category("HttpRequest")]
         public async Task GetWallaXmlData()
         {
@@ -51,11 +59,13 @@ namespace Entity.Test
             }
         }
 
-        [Test, Order(2)]
-        public void CheckIfArticleExists()
+        [Test, Order(1)]
+        [Category("Database")]
+
+        public void CheckArticlesDB()
         {
-            var articleList = DataLayer.Data.ArticleRepository.GetAll().ToList();
-            Assert.AreEqual(0,articleList.Count);
+            var articleList = DataLayer.Data.ArticleRepository.GetAll();
+            articleList.Should().HaveCountGreaterThan(0);
         }
     }
 }

@@ -126,3 +126,4 @@ C:\Users\User\source\repos\News\Entity.Test\bin\Debug\net6.0\Logger.pdb
 C:\Users\User\source\repos\News\Entity.Test\bin\Debug\net6.0\News.Entity.pdb
 C:\Users\User\source\repos\News\Entity.Test\bin\Debug\net6.0\News.Model.pdb
 C:\Users\User\source\repos\News\Entity.Test\bin\Debug\net6.0\News.DAL.pdb
+C:\Users\User\source\repos\News\Entity.Test\bin\Debug\net6.0\FluentAssertions.dll

@@ -4,6 +4,7 @@ using News.Entity.Base;
 using News.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -51,6 +52,11 @@ namespace News.Entity
                     }
 
                 }
+            }
+            catch (SqlException ex)
+            {
+                _logger.AddLogItemToQueue(ex.Message, ex, "Exception");
+
             }
             catch (ArgumentException ex)
             {

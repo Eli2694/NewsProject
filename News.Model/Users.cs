@@ -17,11 +17,11 @@ namespace News.Model
         public string Email { get; set; } = string.Empty;
 
         // Can be nullable
-        public string? FirstCategory { get; set; } = null;
+        public int FirstCategoryID { get; set; }
 
-        public string? SecondCategory { get; set; } = null;
+        public int SecondCategoryID { get; set; }
 
-        public string? ThirdCategory { get; set; } = null;
+        public int ThirdCategoryID { get; set; }
 
 
     }

@@ -57,6 +57,11 @@ namespace News.Entity.Websites
                     
                 }
             }
+            catch (SqlException ex)
+            {
+                _logger.AddLogItemToQueue(ex.Message, ex, "Exception");
+
+            }
             catch (ArgumentException ex)
             {
 

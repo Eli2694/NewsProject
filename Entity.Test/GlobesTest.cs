@@ -10,13 +10,24 @@ using News.Entity;
 using News.Model;
 using News.Entity.Websites;
 using Logger;
+using News.DAL;
+using FluentAssertions;
 
 namespace Entity.Test
 {
     [TestFixture]
     public class GlobesTest
     {
-        [Test,SetUp]
+
+        [Test, SetUp]
+        [Category("Database")]
+        public void CleanDB()
+        {
+            var articleList = DataLayer.Data.ArticleRepository.GetAll();
+            DataLayer.Data.Article.RemoveRange(articleList);
+        }
+
+        [Test, Order(0)]
         [Category("HttpRequest")]
         public async Task GetGlobesXmlData()
         {
@@ -49,6 +60,16 @@ namespace Entity.Test
                 globe.FeedExtraction(doc, new Category() { Id = 1, Name = "Tourism", URL = "https://www.globes.co.il/webservice/rss/rssfeeder.asmx/FeederNode?iid=9010", Source = "globes" });
                 
             }
+        }
+
+        [Test, Order(1)]
+        [Category("Database")]
+
+        public void CheckArticlesDB()
+        {
+            var articleList = DataLayer.Data.ArticleRepository.GetAll();
+            articleList.Should().HaveCountGreaterThan(0);
+
         }
 
     }

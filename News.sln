@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger", "Logger\Logger.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.Test", "DAL.Test\DAL.Test.csproj", "{06CBE5D4-C625-46B3-BB7E-9EC8245E1B73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity.Test", "Entity.Test\Entity.Test.csproj", "{A327185B-C571-4752-A65C-1F37A57AD5A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity.Test", "Entity.Test\Entity.Test.csproj", "{A327185B-C571-4752-A65C-1F37A57AD5A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

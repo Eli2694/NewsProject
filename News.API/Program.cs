@@ -9,8 +9,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
-
 // Cors
 var corsBuilder = new CorsPolicyBuilder();
 corsBuilder.AllowAnyHeader();
@@ -18,6 +16,8 @@ corsBuilder.AllowAnyMethod();
 corsBuilder.AllowAnyOrigin();
 //corsBuilder.AllowCredentials();
 builder.Services.AddCors(options => { options.AddPolicy("AllowAll", corsBuilder.Build()); });
+
+var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
 ﻿using Logger;
+using News.DAL;
 using News.Entity.Websites;
 using News.Model;
 using NUnit.Framework;
@@ -8,12 +9,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using FluentAssertions;
 
 namespace Entity.Test
 {
     public class MaarivTest
     {
-        [Test, Order(1)]
+
+        [Test, SetUp]
+        [Category("Database")]
+        public void CleanDB()
+        {
+            var articleList = DataLayer.Data.ArticleRepository.GetAll();
+            DataLayer.Data.Article.RemoveRange(articleList);
+        }
+
+        [Test, Order(0)]
         [Category("HttpRequest")]
         public async Task GetWallaXmlData()
         {
@@ -46,6 +57,15 @@ namespace Entity.Test
                 maariv.FeedExtraction(doc, new Category() { Id = 17, Name = "Business", URL = "https://www.maariv.co.il/Rss/RssFeedsAsakim", Source = "maariv" });
 
             }
+        }
+
+        [Test, Order(1)]
+        [Category("Database")]
+
+        public void CheckArticlesDB()
+        {
+            var articleList = DataLayer.Data.ArticleRepository.GetAll();
+            articleList.Should().HaveCountGreaterThan(0);
         }
     }
 }
