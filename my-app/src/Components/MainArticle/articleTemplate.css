@@ -1,0 +1,47 @@
+.article-template-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-description {
+  display: flex;
+  width: 70%;
+}
+
+.article-image {
+  height: 150px;
+  width: 200px;
+  margin-left: 1em;
+}
+
+.article-content {
+  line-height: 1.5em;
+  font-size: 1.1em;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.article-title {
+  text-decoration: underline;
+
+  margin-top: 4em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.article-link-btn {
+  background-color: rgb(201, 216, 211);
+  border: none;
+  border-radius: 5px;
+  color: blue;
+  font-size: bold;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.several-line-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

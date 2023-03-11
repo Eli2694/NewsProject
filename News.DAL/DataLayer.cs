@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Configuration;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Annotations;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using News.DAL;
+using System.Xml.Linq;
 using News.Model;
 
 namespace News.DAL
@@ -13,6 +17,7 @@ namespace News.DAL
     // DbContext manages the connection to the database automatically and will open and close the connection as needed.
     public partial class DataLayer : DbContext
     {
+        //private static readonly Lazy<DataLayer> _lazyData = new Lazy<DataLayer>(() => new DataLayer());
 
         // CRUD Operation
         private readonly Repository<Users> _usersRepository;
@@ -51,7 +56,7 @@ namespace News.DAL
             }        
 
         }
-
+        //public static DataLayer Data => _lazyData.Value;
 
         // Singleton instance
         private static DataLayer _data;
@@ -85,30 +90,6 @@ namespace News.DAL
             SaveChanges();
         }
 
-        // Configure database model
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<UserClick>()
-        //        .HasRequired(u => u.Category)
-        //        .WithMany()
-        //        .HasForeignKey(u => u.CategoryID)
-        //        .WillCascadeOnDelete(false);
-
-        //    modelBuilder.Entity<Article>()
-        //        .HasRequired(u => u.Category)
-        //        .WithMany()
-        //        .HasForeignKey(u => u.CategoryID)
-        //        .WillCascadeOnDelete(false);
-
-        //    modelBuilder.Entity<UserClick>()
-        //        .HasRequired(u => u.Article)
-        //        .WithMany()
-        //        .HasForeignKey(u => u.ArticleID)
-        //        .WillCascadeOnDelete(false);
-
-        //}
-
-
 
         //DbSet- פקודה ליצירת טבלאות בדטה בייס
         public DbSet<Users> Users { get; set; }
@@ -124,3 +105,5 @@ namespace News.DAL
         
     }
 }
+
+

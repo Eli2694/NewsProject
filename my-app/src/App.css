@@ -1,0 +1,53 @@
+.page-wrapper {
+  height: 100vh;
+}
+
+.header-wrapper {
+  height: 2em;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-news {
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 3em;
+
+  margin-left: 0.5em;
+}
+
+.footer {
+  height: 2em;
+  border: 1px solid black;
+}
+
+.content {
+  overflow-y: auto;
+}
+
+.menu-content-footer-wrapper {
+  height: calc(100% - 3em);
+}
+
+.menu {
+  width: 9em;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-fill-remaining {
+  flex: 1 1 100%;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

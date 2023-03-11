@@ -20,10 +20,9 @@ namespace News.Model
         public string Image { get; set; } = string.Empty;
 
         [DataType(DataType.Url)]
-        public string ArticleLink { get; set; } = string.Empty;
+        public string Link { get; set; } = string.Empty;
 
-        [DataType(DataType.Url)]
-        public string Source { get; set; } = string.Empty;
+        public string CreatedDate { get; set; }  = string.Empty;
 
         public int CategoryID { get; set; }
 

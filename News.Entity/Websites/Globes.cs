@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.ServiceModel.Syndication;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -17,7 +18,7 @@ namespace News.Entity.Websites
 {
     public class Globes :  RssFeedExtraction, IWebsite
     {
-
+        
         private LogManager _logger;
         public Globes(LogManager log):base(log)
         {
@@ -40,21 +41,33 @@ namespace News.Entity.Websites
                     {
                         Title = itemNode.SelectSingleNode("title").InnerText,
                         Description = ExtractClearDescriptionFromItem(itemNode),
-                        ArticleLink = itemNode.SelectSingleNode("link").InnerText,
+                        Link = itemNode.SelectSingleNode("link").InnerText,
                         Image = ExtractImageFromItem(itemNode, nsmgr),
+                        CreatedDate = itemNode.SelectSingleNode("pubDate").InnerText.Trim(),
                         CategoryID = category.Id,
-                        Source = category.Source,
                         Guid = $"{itemNode.SelectSingleNode("title").InnerText}:{itemNode.SelectSingleNode("pubDate").InnerText}",
                         ArticleClicks = 0
                     };
 
                     // Add to database
 
-                    if(!DataLayer.Data.Article.Any(article=>article.Guid == newArticle.Guid))
+                    _semaphore.Wait();
+                    try
                     {
+                        if (DataLayer.Data.Article.Any(article => article.Guid == newArticle.Guid))
+                        {
+                            // article already exists, skip insertion
+                            return;
+                        }
+
+                        // article does not exist, insert it
                         DataLayer.Data.ArticleRepository.Insert(newArticle);
                     }
-                    
+                    finally
+                    {
+                        _semaphore.Release();
+                    }
+
                 }
             }
             catch (SqlException ex)

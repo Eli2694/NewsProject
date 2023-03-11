@@ -9,7 +9,7 @@ namespace Logger
 {
     internal class LogFile : ILog
     {
-        public static string FilePath = "C:\\Users\\User\\source\\repos\\News";
+        public static string FilePath = "C:\\Users\\User\\source\\repos\\News\\Logs\\";
         public static string FullFileName { get { return FilePath + DateTime.Now.ToString("dd-MM-yyyy") + "file" + Index + ".log"; } set { Index = int.Parse(value); } }
 
         public static int Index = 1;

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using News.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +29,7 @@ namespace News.DAL
         // prevent accidental reassignment of the property in the repository class after it has been initialized
         private readonly DbContext _context;
         private readonly DbSet<TEntity> _dbSet;
+        private static object _lockObject = new object();
 
         public Repository(DbContext context)
         {
@@ -109,10 +113,58 @@ namespace News.DAL
 
             try
             {
-                await Task.Run(() => {
+
+                await Task.Run(() =>
+                {
+
                     _dbSet.Add(entity);
                     _context.SaveChanges();
+
                 });
+
+            }
+            catch (DbUpdateConcurrencyException ex) // Optimistic Concurrency
+            {
+                // Handle concurrency conflict
+                var entry = ex.Entries.Single();
+                var clientValues = (TEntity)entry.Entity;
+                var databaseValues = (TEntity)entry.GetDatabaseValues().ToObject();
+
+                // Determine which values are different
+                var modifiedProperties = entry.CurrentValues.PropertyNames
+                    .Where(name => !Equals(entry.CurrentValues[name], entry.OriginalValues[name]))
+                    .ToList();
+
+                // Update the values that have not been modified in the database
+                modifiedProperties.ForEach(property => entry.Property(property).OriginalValue = databaseValues.GetType().GetProperty(property).GetValue(databaseValues));
+
+                // Try again to save changes
+                try
+                {
+                    _context.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException ex2)
+                {
+                    // Handle concurrency conflict again or throw exception
+                    throw new Exception("Concurrency conflict occurred while updating record.");
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                // Handle database connection error
+                var innerException = ex.InnerException;
+                var sqlException = innerException as SqlException;
+
+                if (sqlException != null && (sqlException.Number == 4060 || sqlException.Number == 18456))
+                {
+                    // Connection error occurred
+                    throw new Exception("Cannot connect to database. Please check the connection string and try again.");
+                }
+                else
+                {
+                    // Other database error occurred
+                    throw new Exception("Error occurred while trying to insert record into database.");
+                }
             }
             catch (Exception)
             {
@@ -120,7 +172,7 @@ namespace News.DAL
                 throw;
             }
 
-            
+
         }
         
 
@@ -133,16 +185,60 @@ namespace News.DAL
 
             try
             {
-                _dbSet.Add(entity);
-                _context.SaveChanges();
+                lock (_lockObject)
+                {
+                    _dbSet.Add(entity);
+                    _context.SaveChanges();
+                }
+            }
+            catch (DbUpdateConcurrencyException ex) // Optimistic Concurrency
+            {
+                // Handle concurrency conflict
+                var entry = ex.Entries.Single();
+                var clientValues = (TEntity)entry.Entity;
+                var databaseValues = (TEntity)entry.GetDatabaseValues().ToObject();
+
+                // Determine which values are different
+                var modifiedProperties = entry.CurrentValues.PropertyNames
+                    .Where(name => !Equals(entry.CurrentValues[name], entry.OriginalValues[name]))
+                    .ToList();
+
+                // Update the values that have not been modified in the database
+                modifiedProperties.ForEach(property => entry.Property(property).OriginalValue = databaseValues.GetType().GetProperty(property).GetValue(databaseValues));
+
+                // Try again to save changes
+                try
+                {
+                    _context.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException ex2)
+                {
+                    // Handle concurrency conflict again or throw exception
+                    throw new Exception("Concurrency conflict occurred while updating record.");
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                // Handle database connection error
+                var innerException = ex.InnerException;
+                var sqlException = innerException as SqlException;
+
+                if (sqlException != null && (sqlException.Number == 4060 || sqlException.Number == 18456))
+                {
+                    // Connection error occurred
+                    throw new Exception("Cannot connect to database. Please check the connection string and try again.");
+                }
+                else
+                {
+                    // Other database error occurred
+                    throw new Exception("Error occurred while trying to insert record into database.");
+                }
             }
             catch (Exception)
             {
 
                 throw;
-            }
-
-            
+            }     
         }
 
         // async 
@@ -182,13 +278,30 @@ namespace News.DAL
                 _context.Entry(entity).State = EntityState.Modified;
                 _context.SaveChanges();
             }
+            catch (DbUpdateException ex)
+            {
+                // Handle database connection error
+                var innerException = ex.InnerException;
+                var sqlException = innerException as SqlException;
+
+                if (sqlException != null && (sqlException.Number == 4060 || sqlException.Number == 18456))
+                {
+                    // Connection error occurred
+                    throw new Exception("Cannot connect to database. Please check the connection string and try again.");
+                }
+                else
+                {
+                    // Other database error occurred
+                    throw new Exception("Error occurred while trying to insert record into database.");
+                }
+            }
             catch (Exception)
             {
 
                 throw;
             }
 
-           
+
         }
 
         //async

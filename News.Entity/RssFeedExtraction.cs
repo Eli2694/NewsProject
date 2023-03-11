@@ -15,6 +15,8 @@ namespace News.Entity
 {
     public abstract class RssFeedExtraction : BaseEntity
     {
+        public static SemaphoreSlim _semaphore = new SemaphoreSlim(1);
+
         private LogManager _logger;
         public RssFeedExtraction(LogManager log) : base(log)
         {
@@ -36,19 +38,31 @@ namespace News.Entity
                     {
                         Title = itemNode.SelectSingleNode("title").InnerText.Trim(),
                         Description = ExtractClearDescriptionFromItem(itemNode),
-                        ArticleLink = itemNode.SelectSingleNode("link").InnerText.Trim(),
+                        Link = itemNode.SelectSingleNode("link").InnerText.Trim(),
                         Image = ExtractImageFromItem(itemNode),
+                        CreatedDate = itemNode.SelectSingleNode("pubDate").InnerText.Trim(),
                         CategoryID = category.Id,
-                        Source = category.Source,
                         Guid = $"{itemNode.SelectSingleNode("title").InnerText}:{itemNode.SelectSingleNode("pubDate").InnerText}",
                         ArticleClicks = 0
                     };
 
                     // Add to database
 
-                    if (!DataLayer.Data.Article.Any(article => article.Guid == newArticle.Guid))
+                    _semaphore.Wait();
+                    try
                     {
+                        if (DataLayer.Data.Article.Any(article => article.Guid == newArticle.Guid))
+                        {
+                            // article already exists, skip insertion
+                            return;
+                        }
+
+                        // article does not exist, insert it
                         DataLayer.Data.ArticleRepository.Insert(newArticle);
+                    }
+                    finally
+                    {
+                        _semaphore.Release();
                     }
 
                 }

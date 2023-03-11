@@ -12,8 +12,9 @@ namespace DAL.Test
 
         public void SetUp() 
         {
-            //init database
-            DataLayer.Data.SaveChanges();
+            // This will drop and recreate the database based on the current model.
+            // The true parameter indicates that the database should be re-created even if it already exists.
+            DataLayer.Data.Database.Initialize(true);
         }
      
     }

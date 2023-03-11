@@ -11,20 +11,26 @@ using System.Net.Http;
 using System.Xml;
 using System.ServiceModel.Syndication;
 using News.Entity.Websites;
+using static Logger.ILogger;
+using System.Collections;
 
 namespace News.Entity
 {
+    
     public class ManageRssFeeds : BaseEntity
     {
         private LogManager _logger;
         private IEnumerable<Category>? _categories;
         private IWebsite _website;
+        //public Queue<XmlDocument> _xmlContentQueue;
+        //Task queueTask = null;
 
         public ManageRssFeeds(LogManager log) : base(log)
         {
             _logger = LogInstance; // LogInstance from BaseNews
 
             Task.Run(InitFeeds);
+           
         }
 
         private void InitFeeds()
@@ -100,6 +106,7 @@ namespace News.Entity
                 WebsiteCoordination(doc, category);
             }
         }
+     
 
         private void WebsiteCoordination(XmlDocument doc,Category category)
         {

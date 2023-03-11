@@ -1,0 +1,13 @@
+.login-btn {
+  height: 3em;
+  width: 20%;
+
+  background: linear-gradient(132deg, rgb(65, 80, 95) 0%, rgb(36, 37, 38) 100%);
+
+  font-size: 2em;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: aliceblue;
+
+  cursor: pointer;
+}

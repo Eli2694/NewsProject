@@ -1,0 +1,33 @@
+html,
+body {
+  font-size: 16px;
+  overflow: hidden;
+  margin: 0;
+  height: 100%;
+
+  /* Relaxing Red */
+  background-image: linear-gradient(to right, #fffbd5, #b20a2c);
+  /* Premium Dark */
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+  /* Lawrencium */
+  background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+
+  /* Sand to Blue */
+  background: linear-gradient(
+    132deg,
+    rgb(249, 202, 120) 0%,
+    rgb(212, 206, 169) 23.5%,
+    rgb(172, 192, 191) 100%
+  );
+
+  background: linear-gradient(
+    132deg,
+    rgb(215, 223, 252) 9.63%,
+    rgb(251, 251, 255) 36.31%
+  );
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

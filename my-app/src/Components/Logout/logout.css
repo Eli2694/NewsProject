@@ -1,0 +1,13 @@
+.logout-btn {
+  background: linear-gradient(
+    292deg,
+    rgb(39, 43, 44) 100%,
+    rgb(241, 60, 43) 0%
+  );
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
+  border: none;
+
+  cursor: pointer;
+}

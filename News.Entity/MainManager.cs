@@ -24,7 +24,6 @@ namespace News.Entity
 
         public Walla Walla { get; set; }
 
-        public DataLayer DataLayer { get; set; }
 
         //constructor
         private MainManager()
@@ -42,7 +41,7 @@ namespace News.Entity
         private void init()
         {
 
-            DataLayer = DataLayer.Data;
+            
 
             Target(LogProvider.File);
             Log = new LogManager();
@@ -55,6 +54,12 @@ namespace News.Entity
             Walla = new Walla(Log);
 
 
+        }
+
+        // Class Factory - For Testing 
+        public static MainManager CreateInstance()
+        {
+            return new MainManager();
         }
     }
 }
