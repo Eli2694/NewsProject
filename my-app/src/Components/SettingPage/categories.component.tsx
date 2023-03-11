@@ -16,6 +16,8 @@ export const Categories = () => {
   const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
   const { user } = useAuth0();
   const newsWebsites = ["walla", "ynet", "maariv", "globes"];
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const InitUserDB = async () => {
     let email: string | undefined = user?.email;
@@ -30,6 +32,7 @@ export const Categories = () => {
   }, []);
 
   const FetchCategories = async () => {
+    setIsLoading(true);
     try {
       const response: Category[] = await GetListOfNewsCategories();
       console.log(response);
@@ -38,10 +41,14 @@ export const Categories = () => {
       }
     } catch (error) {
       console.error(error);
+      // Reload the page
+      window.location.reload();
     }
+    setIsLoading(false);
   };
 
   const FetchUserCategories = async () => {
+    setIsLoading(true);
     try {
       let email: string | undefined = user?.email;
       const userCategories = await getUserCategories(email);
@@ -49,13 +56,15 @@ export const Categories = () => {
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false);
   };
 
   const handleSelectedCategoriesChange = (categories: Category[]) => {
     setSelectedCategories(categories);
   };
 
-  const UpdateUser = () => {
+  const UpdateUser = async () => {
+    setIsLoading(true);
     const categoriesCount = 3;
     if (!user?.email) {
       console.log("User email is not defined");
@@ -73,10 +82,12 @@ export const Categories = () => {
         SecondCategoryID: selectedCategories[1].id,
         ThirdCategoryID: selectedCategories[2].id,
       };
-      UpdateUserCategoriesInDB(putUser);
+      await UpdateUserCategoriesInDB(putUser);
     } catch (error) {
       console.log(error);
+      setError("Failed to update user categories.");
     }
+    setIsLoading(false);
   };
 
   return (
@@ -84,6 +95,8 @@ export const Categories = () => {
       <button className="confirm-categories-btn" onClick={() => UpdateUser()}>
         Confirm Categories
       </button>
+      {isLoading && <div>Loading...</div>}
+      {error && <div>{error}</div>}
       <div className="checkbox-container">
         {newsWebsites.map((newsWebsite) => (
           <div key={newsWebsite}>

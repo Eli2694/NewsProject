@@ -9,8 +9,8 @@
 }
 
 .article-image {
-  height: 150px;
-  width: 200px;
+  height: 10em;
+  width: 11.6em;
   margin-left: 1em;
 }
 
@@ -35,6 +35,7 @@
   border-radius: 5px;
   color: blue;
   font-size: bold;
+  cursor: pointer;
   font-family: "Courier New", Courier, monospace;
 }
 

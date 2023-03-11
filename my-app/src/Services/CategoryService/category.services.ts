@@ -11,7 +11,7 @@ export const GetListOfNewsCategories = (): Promise<Category[]> => {
     })
     .catch((error) => {
       const errorMessage = error.response?.data?.message ?? "An error occurred";
-      alert(errorMessage);
+      console.log(errorMessage);
       throw new Error(errorMessage);
     });
 };
