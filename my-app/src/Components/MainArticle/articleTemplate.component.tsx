@@ -38,7 +38,6 @@ export const ArticleTemplate = ({ article }: ArticleTemplateProps) => {
       <div className="article-link">
         <button onClick={handleLinkClick} className="article-link-btn">
           <a target="_blank" rel="noreferrer" href={article.link}>
-            {" "}
             Link To Article Source
           </a>
         </button>
