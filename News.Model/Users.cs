@@ -10,18 +10,18 @@ namespace News.Model
     public class Users
     {
         [Key]
-        public int Id { get; set; }
+        public int id { get; set; }
 
         [DataType(DataType.EmailAddress)]
 
-        public string Email { get; set; } = string.Empty;
+        public string email { get; set; } = string.Empty;
 
         // Can be nullable
-        public int FirstCategoryID { get; set; }
+        public int firstCategoryID { get; set; }
 
-        public int SecondCategoryID { get; set; }
+        public int secondCategoryID { get; set; }
 
-        public int ThirdCategoryID { get; set; }
+        public int thirdCategoryID { get; set; }
 
 
     }

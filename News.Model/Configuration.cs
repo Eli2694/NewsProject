@@ -11,7 +11,7 @@ namespace News.Model
     {
         [Key]
         public int Id { get; set; }
-        public string Auth0Bearer { get; set; } = string.Empty;
+        public string auth0Bearer { get; set; } = string.Empty;
 
         
 

@@ -30,7 +30,7 @@ namespace News.DAL
         public IRepository<Category> CategoryRepository => _categoryRepository;
         public IRepository<UserClick> UserClickRepository => _userClickRepository;
 
-        private static string connectionString = "Data Source=localhost\\SQLEXPRESS; Initial Catalog=NewsProject; Integrated Security=SSPI;Persist Security Info=False";
+        private static string connectionString = "Data Source=localhost\\SQLEXPRESS; Initial Catalog=News_Project; Integrated Security=SSPI;Persist Security Info=False";
 
         private DataLayer() : base(connectionString)
         {
@@ -81,7 +81,7 @@ namespace News.DAL
             // Seed configuration
             Model.Configuration SeedConfiguration = new News.Model.Configuration()
             {
-                Auth0Bearer = "",              
+                auth0Bearer = "",              
             };
 
             Configuration.Add(SeedConfiguration);

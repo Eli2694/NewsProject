@@ -20,8 +20,8 @@ namespace DAL.Test
             List<Category> AllCategories = (List<Category>)DataLayer.Data.CategoryRepository.GetAll();
             Category category = AllCategories.First();
             Assert.IsNotNull(category);
-            Assert.AreEqual("globes", category.Source);
-            Assert.AreEqual("https://www.globes.co.il/webservice/rss/rssfeeder.asmx/FeederNode?iid=9010", category.URL);
+            Assert.AreEqual("globes", category.name );
+            Assert.AreEqual("https://www.globes.co.il/webservice/rss/rssfeeder.asmx/FeederNode?iid=9010", category.url);
         }
 
 
@@ -30,7 +30,7 @@ namespace DAL.Test
         [Order(1)]
         public void AddCategory()
         {           
-           DataLayer.Data.CategoryRepository.Insert(new Category() { Name = "News",URL= "https://www.Test.co.il",Source="Test" });
+           DataLayer.Data.CategoryRepository.Insert(new Category() { name = "News",url = "https://www.Test.co.il",source ="Test" });
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace DAL.Test
         {
             Category category =  DataLayer.Data.CategoryRepository.GetById(35); 
             Assert.IsNotNull(category);
-            Assert.AreEqual("News", category.Name);
+            Assert.AreEqual("News", category.name);
         }
 
         [Test]
@@ -49,13 +49,13 @@ namespace DAL.Test
         public void UpdateCategory()
         {
             Category category = DataLayer.Data.CategoryRepository.GetById(35);
-            category.Name = "Test";
+            category.name = "Test";
             DataLayer.Data.CategoryRepository.Update(category);
 
             Category updatedCategory = DataLayer.Data.CategoryRepository.GetById(35);
 
             Assert.IsNotNull(updatedCategory);
-            Assert.AreEqual("Test", updatedCategory.Name);
+            Assert.AreEqual("Test", updatedCategory.name);
         }
 
         [Test]

@@ -14,7 +14,7 @@ namespace News.API.Controllers
         {
             try
             {
-                Users user = DataLayer.Data.Users.FirstOrDefault(u=>u.Email == email);
+                Users user = DataLayer.Data.Users.FirstOrDefault(u=>u.email == email);
                 if (user == null)
                 {
                     return NoContent();
@@ -24,12 +24,12 @@ namespace News.API.Controllers
 
                     var articles = DataLayer.Data.Article
                                                     .Where(a =>
-                                                        (user.FirstCategoryID != 0 && a.CategoryID == user.FirstCategoryID) ||
-                                                        (user.SecondCategoryID != 0 && a.CategoryID == user.SecondCategoryID) ||
-                                                        (user.ThirdCategoryID != 0 && a.CategoryID == user.ThirdCategoryID)
+                                                        (user.firstCategoryID != 0 && a.categoryID == user.firstCategoryID) ||
+                                                        (user.secondCategoryID != 0 && a.categoryID == user.secondCategoryID) ||
+                                                        (user.thirdCategoryID != 0 && a.categoryID == user.thirdCategoryID)
                                                     )
-                                                    .OrderByDescending(a => a.CreatedDate)
-                                                    .GroupBy(a => a.CategoryID)
+                                                    .OrderByDescending(a => a.createdDate)
+                                                    .GroupBy(a => a.categoryID)
                                                     .SelectMany(g => g.Take(10))
                                                     .ToList();
 
@@ -48,6 +48,51 @@ namespace News.API.Controllers
                 var errorMessage = "An error occurred";
                 MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
                 return StatusCode(StatusCodes.Status500InternalServerError, new { message = errorMessage });
+            }
+        }
+
+        [HttpPut]
+        public IActionResult UpdateArticleClicks(Article article)
+        {
+            Article art = DataLayer.Data.ArticleRepository.GetById(article.id);
+            if (art != null) {
+                art.articleClicks = art.articleClicks + 1;
+                DataLayer.Data.ArticleRepository.Update(art);
+                return Ok(art);
+            }
+
+            return NoContent();
+            
+        }
+
+        [HttpPost]
+        public IActionResult AddOrUpdateUserClicks(Article article,string email)
+        {
+            Users user = DataLayer.Data.Users.FirstOrDefault(u => u.email == email);
+            if(user == null) 
+            {
+                return NoContent();
+            }
+            else
+            {
+                UserClick userClick = DataLayer.Data.UserClickRepository.GetById(user.id);
+                if(userClick == null) 
+                {
+                    userClick = new UserClick()
+                    {
+                        userId = user.id,
+                        articleID = article.id,
+                        numberOfClicks = 1
+                    };
+                    DataLayer.Data.UserClickRepository.Insert(userClick);
+                    return Ok(userClick);
+                }
+                else
+                {
+                    userClick.numberOfClicks = userClick.numberOfClicks + 1;
+                    DataLayer.Data.UserClickRepository.Update(userClick);
+                    return Ok(userClick);
+                }
             }
         }
     }

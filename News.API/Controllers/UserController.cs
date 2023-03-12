@@ -16,10 +16,10 @@ namespace News.API.Controllers
 
             try
             {
-                Users user = DataLayer.Data.Users.ToList().Find(x => x.Email == email);
+                Users user = DataLayer.Data.Users.ToList().Find(x => x.email == email);
                 if (user == null)
                 {
-                    DataLayer.Data.UsersRepository.Insert(new Users() { Email = email });
+                    DataLayer.Data.UsersRepository.Insert(new Users() { email = email });
                     return Ok();
                 }
             }
@@ -40,12 +40,12 @@ namespace News.API.Controllers
 
             try
             {
-                Users user = DataLayer.Data.Users.ToList().Find(x => x.Email == updateUser.Email);
+                Users user = DataLayer.Data.Users.ToList().Find(x => x.email == updateUser.email);
                 if (user != null)
                 {
-                    user.FirstCategoryID = updateUser.FirstCategoryID;
-                    user.SecondCategoryID = updateUser.SecondCategoryID;
-                    user.ThirdCategoryID = updateUser.ThirdCategoryID;
+                    user.firstCategoryID = updateUser.firstCategoryID;
+                    user.secondCategoryID = updateUser.secondCategoryID;
+                    user.thirdCategoryID = updateUser.thirdCategoryID;
 
                     DataLayer.Data.UsersRepository.Update(user);
                     return Ok("Success");
@@ -72,18 +72,22 @@ namespace News.API.Controllers
 
             try
             {
-                Users user = DataLayer.Data.Users.ToList().Find(x => x.Email == email);
+                Users user = DataLayer.Data.Users.ToList().Find(x => x.email == email);
                 if (user != null)
                 {
-                    if (user.FirstCategoryID == 0 && user.SecondCategoryID == 0 && user.ThirdCategoryID == 0)
+                    if (user.firstCategoryID == 0 && user.secondCategoryID == 0 && user.thirdCategoryID == 0)
                     {
                         return NotFound("User does not have any categories selected.");
                     }
                     else
                     {
-                        List<Category> userCategories = DataLayer.Data.Categories
-                       .Where(c => c.Id == user.FirstCategoryID || c.Id == user.SecondCategoryID || c.Id == user.ThirdCategoryID)
-                       .ToList();
+                        // First get all categories
+                        var allCategories = DataLayer.Data.CategoryRepository.GetAll();
+
+                        // Then select specific categories
+                        var userCategories = allCategories
+                            .Where(c => c.id == user.firstCategoryID || c.id == user.secondCategoryID || c.id == user.thirdCategoryID)
+                            .ToList();
 
                         // if the count of extracted categories is exactly 3
                         if (userCategories.Count() == 3)

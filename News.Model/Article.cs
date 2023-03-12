@@ -11,23 +11,23 @@ namespace News.Model
     public class Article
     {
         [Key]
-        public int Id { get; set; }
+        public int id { get; set; }
 
-        public string Title { get; set; } = string.Empty;
+        public string title { get; set; } = string.Empty;
 
-        public string Description { get; set; } = string.Empty;
+        public string description { get; set; } = string.Empty;
 
-        public string Image { get; set; } = string.Empty;
+        public string image { get; set; } = string.Empty;
 
         [DataType(DataType.Url)]
-        public string Link { get; set; } = string.Empty;
+        public string link { get; set; } = string.Empty;
 
-        public string CreatedDate { get; set; }  = string.Empty;
+        public string createdDate { get; set; }  = string.Empty;
 
-        public int CategoryID { get; set; }
+        public int categoryID { get; set; }
 
-        public string Guid { get; set; }
+        public string guid { get; set; }
 
-        public int ArticleClicks { get; set; }
+        public int articleClicks { get; set; }
     }
 }

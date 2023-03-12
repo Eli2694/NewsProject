@@ -80,7 +80,7 @@ namespace News.Entity
 
                 // Make a GET request to the URL 
 
-                var response = await client.GetAsync(category.URL);
+                var response = await client.GetAsync(category.url);
 
                 // Ensure the response was successful 
 
@@ -91,7 +91,7 @@ namespace News.Entity
                 catch (HttpRequestException exc)
                 {
 
-                    _logger.AddLogItemToQueue($"Unseccefull GET request of: {category.Name},{category.Source}", exc, "Error");
+                    _logger.AddLogItemToQueue($"Unseccefull GET request of: {category.name},{category.source}", exc, "Error");
                 }
 
                 // Read the content of the response 
@@ -110,7 +110,7 @@ namespace News.Entity
 
         private void WebsiteCoordination(XmlDocument doc,Category category)
         {
-            switch (category.Source) 
+            switch (category.source) 
             {
                 case "globes":
                     _website = new Globes(_logger);

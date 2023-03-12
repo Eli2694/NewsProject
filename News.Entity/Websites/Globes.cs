@@ -39,14 +39,14 @@ namespace News.Entity.Websites
                 {
                     var newArticle = new Article()
                     {
-                        Title = itemNode.SelectSingleNode("title").InnerText,
-                        Description = ExtractClearDescriptionFromItem(itemNode),
-                        Link = itemNode.SelectSingleNode("link").InnerText,
-                        Image = ExtractImageFromItem(itemNode, nsmgr),
-                        CreatedDate = itemNode.SelectSingleNode("pubDate").InnerText.Trim(),
-                        CategoryID = category.Id,
-                        Guid = $"{itemNode.SelectSingleNode("title").InnerText}:{itemNode.SelectSingleNode("pubDate").InnerText}",
-                        ArticleClicks = 0
+                        title = itemNode.SelectSingleNode("title").InnerText,
+                        description = ExtractClearDescriptionFromItem(itemNode),
+                        link = itemNode.SelectSingleNode("link").InnerText,
+                        image = ExtractImageFromItem(itemNode, nsmgr),
+                        createdDate = itemNode.SelectSingleNode("pubDate").InnerText.Trim(),
+                        categoryID = category.id,
+                        guid = $"{itemNode.SelectSingleNode("title").InnerText}:{itemNode.SelectSingleNode("pubDate").InnerText}",
+                        articleClicks = 0
                     };
 
                     // Add to database
@@ -54,7 +54,7 @@ namespace News.Entity.Websites
                     _semaphore.Wait();
                     try
                     {
-                        if (DataLayer.Data.Article.Any(article => article.Guid == newArticle.Guid))
+                        if (DataLayer.Data.Article.Any(article => article.guid == newArticle.guid))
                         {
                             // article already exists, skip insertion
                             return;

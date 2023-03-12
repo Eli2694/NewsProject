@@ -31,8 +31,8 @@ namespace DAL.Test
             Category category = categoryList.First();
 
             Assert.IsNotNull(category);
-            Assert.AreEqual("globes", category.Source);
-            Assert.AreEqual("https://www.globes.co.il/webservice/rss/rssfeeder.asmx/FeederNode?iid=9010", category.URL);
+            Assert.AreEqual("globes", category.source);
+            Assert.AreEqual("https://www.globes.co.il/webservice/rss/rssfeeder.asmx/FeederNode?iid=9010", category.url);
         }
     }
 }

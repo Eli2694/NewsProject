@@ -26,8 +26,12 @@ export const Categories = () => {
 
   useEffect(() => {
     InitUserDB();
-    FetchCategories();
-    FetchUserCategories();
+    setTimeout(() => {
+      FetchCategories();
+    }, 1000); // 1 second delay
+    setTimeout(() => {
+      FetchUserCategories();
+    }, 2000); // 2 second delay
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -41,8 +45,6 @@ export const Categories = () => {
       }
     } catch (error) {
       console.error(error);
-      // Reload the page
-      window.location.reload();
     }
     setIsLoading(false);
   };
@@ -76,11 +78,11 @@ export const Categories = () => {
     }
     try {
       let putUser: Users = {
-        Id: 0,
-        Email: user?.email,
-        FirstCategoryID: selectedCategories[0].id,
-        SecondCategoryID: selectedCategories[1].id,
-        ThirdCategoryID: selectedCategories[2].id,
+        id: 0,
+        email: user?.email,
+        firstCategoryID: selectedCategories[0].id,
+        secondCategoryID: selectedCategories[1].id,
+        thirdCategoryID: selectedCategories[2].id,
       };
       await UpdateUserCategoriesInDB(putUser);
     } catch (error) {

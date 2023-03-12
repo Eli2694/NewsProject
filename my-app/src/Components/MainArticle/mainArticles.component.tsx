@@ -14,11 +14,11 @@ export const MainArticles = () => {
   const fetchArticleList = async () => {
     setIsLoading(true);
     let currentUser: Users = {
-      Id: 0,
-      Email: user?.email,
-      FirstCategoryID: 0,
-      SecondCategoryID: 0,
-      ThirdCategoryID: 0,
+      id: 0,
+      email: user?.email,
+      firstCategoryID: 0,
+      secondCategoryID: 0,
+      thirdCategoryID: 0,
     };
     try {
       const data = await fetchArticles(currentUser);
@@ -41,7 +41,10 @@ export const MainArticles = () => {
   return (
     <div className="articles-container">
       {isLoading ? (
-        <p>Loading articles...</p>
+        <div className="loading">
+          <p>Loading articles...</p>
+          <p>Please Choose 3 Categories!</p>
+        </div>
       ) : error ? (
         <p>{error}</p>
       ) : (
