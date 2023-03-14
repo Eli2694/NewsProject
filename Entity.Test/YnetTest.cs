@@ -53,7 +53,7 @@ namespace Entity.Test
 
 
                 Ynet ynet = new Ynet(log);
-                ynet.FeedExtraction(doc, new Category() { Id = 9, Name = "Sport", URL = "https://www.ynet.co.il/Integration/StoryRss3.xml", Source = "ynet" });
+                ynet.FeedExtraction(doc, new Category() {id = 9, name = "Sport", url = "https://www.ynet.co.il/Integration/StoryRss3.xml", source = "ynet" });
 
             }
         }

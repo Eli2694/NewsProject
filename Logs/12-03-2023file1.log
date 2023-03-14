@@ -346,3 +346,26 @@ Exception - 12/03/2023 17:03:30 -    at System.Data.Entity.Core.EntityClient.Int
    at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
    at News.DAL.Repository`1.GetAll() in C:\Users\User\source\repos\News\News.DAL\CRUD.cs:line 65
    at News.API.Controllers.CategoryController.GetAllCategories() in C:\Users\User\source\repos\News\News.API\Controllers\CategoryController.cs:line 19, An error occurred while executing the command definition. See the inner exception for details.
+Exception - 12/03/2023 20:01:10 -    at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   at System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass41_0.<GetResults>b__0()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__31_0()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at News.DAL.Repository`1.GetAll() in C:\Users\User\source\repos\News\News.DAL\CRUD.cs:line 46
+   at News.API.Controllers.CategoryController.GetAllCategories() in C:\Users\User\source\repos\News\News.API\Controllers\CategoryController.cs:line 19, The underlying provider failed on Open.
+Event - 12/03/2023 20:01:10 - Get Rss Feeds And Send Http Request For Information About News
+Exception - 12/03/2023 20:01:10 -    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass41_0.<GetResults>b__0()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__31_0()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at News.DAL.Repository`1.GetAll() in C:\Users\User\source\repos\News\News.DAL\CRUD.cs:line 46
+   at News.Entity.ManageRssFeeds.InitFeeds() in C:\Users\User\source\repos\News\News.Entity\ManageRssFeeds.cs:line 45, An error occurred while executing the command definition. See the inner exception for details.

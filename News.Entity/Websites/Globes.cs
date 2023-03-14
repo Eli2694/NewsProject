@@ -43,7 +43,7 @@ namespace News.Entity.Websites
                         description = ExtractClearDescriptionFromItem(itemNode),
                         link = itemNode.SelectSingleNode("link").InnerText,
                         image = ExtractImageFromItem(itemNode, nsmgr),
-                        createdDate = itemNode.SelectSingleNode("pubDate").InnerText.Trim(),
+                        createdDate = ExtractDateTimeFitSQL(itemNode.SelectSingleNode("pubDate").InnerText.Trim()),
                         categoryID = category.id,
                         guid = $"{itemNode.SelectSingleNode("title").InnerText}:{itemNode.SelectSingleNode("pubDate").InnerText}",
                         articleClicks = 0

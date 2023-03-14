@@ -57,7 +57,7 @@ namespace Entity.Test
 
                 //Globes Test
                 Globes globe = new News.Entity.Websites.Globes(log);
-                globe.FeedExtraction(doc, new Category() { Id = 1, Name = "Tourism", URL = "https://www.globes.co.il/webservice/rss/rssfeeder.asmx/FeederNode?iid=9010", Source = "globes" });
+                globe.FeedExtraction(doc, new Category() { id = 1, name = "Tourism", url = "https://www.globes.co.il/webservice/rss/rssfeeder.asmx/FeederNode?iid=9010", source = "globes" });
                 
             }
         }

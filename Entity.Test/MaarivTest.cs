@@ -54,7 +54,7 @@ namespace Entity.Test
 
 
                 Maariv maariv = new Maariv(log);
-                maariv.FeedExtraction(doc, new Category() { Id = 17, Name = "Business", URL = "https://www.maariv.co.il/Rss/RssFeedsAsakim", Source = "maariv" });
+                maariv.FeedExtraction(doc, new Category() { id = 17, name = "Business", url = "https://www.maariv.co.il/Rss/RssFeedsAsakim", source = "maariv" });
 
             }
         }

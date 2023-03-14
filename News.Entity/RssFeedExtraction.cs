@@ -5,6 +5,7 @@ using News.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -40,14 +41,13 @@ namespace News.Entity
                         description = ExtractClearDescriptionFromItem(itemNode),
                         link = itemNode.SelectSingleNode("link").InnerText.Trim(),
                         image = ExtractImageFromItem(itemNode),
-                        createdDate = itemNode.SelectSingleNode("pubDate").InnerText.Trim(),
+                        createdDate = ExtractDateTimeFitSQL(itemNode.SelectSingleNode("pubDate").InnerText.Trim()),
                         categoryID = category.id,
                         guid = $"{itemNode.SelectSingleNode("title").InnerText}:{itemNode.SelectSingleNode("pubDate").InnerText}",
                         articleClicks = 0
-                    };
+                    };        
 
                     // Add to database
-
                     _semaphore.Wait();
                     try
                     {
@@ -114,5 +114,24 @@ namespace News.Entity
             }
             return null;
         }
+
+        public virtual string ExtractDateTimeFitSQL(string pubDate)
+        {
+            string[] formats = {
+                    "ddd, dd MMM yyyy HH:mm:ss zzz",
+                    "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
+                    "ddd, dd MMM yyyy HH:mm:ss"
+            };
+
+            DateTime result;
+            if (DateTime.TryParseExact(pubDate, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+            {
+                return result.ToString("yyyy-MM-dd HH:mm:ss");
+            }
+
+            Console.WriteLine("invalid format");
+            return "invalid format";
+        }
+
     }
 }

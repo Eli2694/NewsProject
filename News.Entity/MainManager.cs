@@ -61,5 +61,7 @@ namespace News.Entity
         {
             return new MainManager();
         }
+
+
     }
 }

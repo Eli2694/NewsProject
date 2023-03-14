@@ -54,7 +54,7 @@ namespace Entity.Test
 
                 
                 Walla walla = new Walla(log);
-                walla.FeedExtraction(doc, new Category() { Id = 25, Name = "Basketball", URL = "https://rss.walla.co.il/feed/151", Source = "walla" });
+                walla.FeedExtraction(doc, new Category() {id = 25, name = "Basketball", url = "https://rss.walla.co.il/feed/151", source = "walla" });
 
             }
         }

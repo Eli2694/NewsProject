@@ -103,6 +103,7 @@ namespace News.Entity
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(content);
 
+                //--
                 WebsiteCoordination(doc, category);
             }
         }

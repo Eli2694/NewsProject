@@ -28,6 +28,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+MainManager.CreateInstance();
+
 // Enable CORS
 app.UseCors("AllowAll");
 
