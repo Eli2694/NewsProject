@@ -56,7 +56,7 @@ namespace News.Entity
 
         }
 
-        // Class Factory - For Testing 
+        // Class Factory 
         public static MainManager CreateInstance()
         {
             return new MainManager();

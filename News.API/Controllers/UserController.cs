@@ -9,6 +9,8 @@ namespace News.API.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
+        
+
         [HttpPost("{email}")]
         public IActionResult AddUserToDB(string email)
         {

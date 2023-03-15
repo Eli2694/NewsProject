@@ -10,7 +10,7 @@ namespace News.API.Controllers
     public class ArticleController : ControllerBase
     {
 
-        public ErrorService error = new ErrorService();
+        
 
         [HttpGet]
         public IActionResult GetMainUserArticles(string email)
@@ -48,7 +48,7 @@ namespace News.API.Controllers
             catch (Exception ex)
             {
                 MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
-                return error.Error();
+                return BadRequest();
             }
         }
 
@@ -71,7 +71,7 @@ namespace News.API.Controllers
             {
 
                 MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
-                return error.Error();
+                return BadRequest();
             }      
             
         }
@@ -113,7 +113,7 @@ namespace News.API.Controllers
             {
 
                 MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
-                return error.Error();
+                return BadRequest();
             }
 
            
@@ -145,7 +145,7 @@ namespace News.API.Controllers
             {
 
                 MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
-                return error.Error();
+                return BadRequest();
             }
     
         }
@@ -155,23 +155,36 @@ namespace News.API.Controllers
         public IActionResult GetCuriousArticle(string email)
         {
 
-            Users user = DataLayer.Data.Users.FirstOrDefault(u => u.email == email);
-            if(user !=null)
+            try
             {
-                var unclickedArticles = DataLayer.Data.Article
-                           .GroupJoin(
-                               DataLayer.Data.UserClicks.Where(u => u.userId == user.id),
-                               a => a.id,
-                               uc => uc.articleID,
-                               (a, uc) => new { Article = a, UserClicks = uc })
-                           .Where(x => !x.UserClicks.Any())
-                           .Select(x => x.Article)
-                           .Take(10)
-                           .ToList();
+                Users user = DataLayer.Data.Users.FirstOrDefault(u => u.email == email);
+                if (user != null)
+                {
+                    var unclickedArticles = DataLayer.Data.Article
+                                                            .GroupJoin(
+                                                                DataLayer.Data.UserClicks.Where(u => u.userId == user.id),
+                                                                a => a.id,
+                                                                uc => uc.articleID,
+                                                                (a, uc) => new { Article = a, UserClicks = uc })
+                                                            .Where(x => !x.UserClicks.Any())
+                                                            .OrderByDescending(a => a.Article.createdDate)
+                                                            .Select(x => x.Article)
+                                                            .Take(10)
+                                                            .ToList();
 
-                return Ok(unclickedArticles);
+
+                    return Ok(unclickedArticles);
+                }
+                return NoContent();
             }
-            return NoContent();
+            catch (Exception ex)
+            {
+
+                MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
+                return BadRequest();
+            }
+
+           
            
 
         }

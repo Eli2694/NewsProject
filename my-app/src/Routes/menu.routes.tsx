@@ -9,8 +9,14 @@ export const Menu = () => {
       <Link to="/" className="link">
         <button className="menu-btn">Setting</button>
       </Link>
-      <Link to="/Main" className="link">
+      <Link to="/main" className="link">
         <button className="menu-btn">Main</button>
+      </Link>
+      <Link to="/popular" className="link">
+        <button className="menu-btn">Popular</button>
+      </Link>
+      <Link to="/curious" className="link">
+        <button className="menu-btn">Curious</button>
       </Link>
     </div>
   );

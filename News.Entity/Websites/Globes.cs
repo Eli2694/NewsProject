@@ -34,41 +34,46 @@ namespace News.Entity.Websites
 
                 XmlNamespaceManager nsmgr = new XmlNamespaceManager(xmlDoc.NameTable);
                 XmlNodeList itemNodes = xmlDoc.SelectNodes("//item");
-                
-                foreach (XmlNode itemNode in itemNodes)
+
+                if(itemNodes != null )
                 {
-                    var newArticle = new Article()
+                    foreach (XmlNode itemNode in itemNodes)
                     {
-                        title = itemNode.SelectSingleNode("title").InnerText,
-                        description = ExtractClearDescriptionFromItem(itemNode),
-                        link = itemNode.SelectSingleNode("link").InnerText,
-                        image = ExtractImageFromItem(itemNode, nsmgr),
-                        createdDate = ExtractDateTimeFitSQL(itemNode.SelectSingleNode("pubDate").InnerText.Trim()),
-                        categoryID = category.id,
-                        guid = $"{itemNode.SelectSingleNode("title").InnerText}:{itemNode.SelectSingleNode("pubDate").InnerText}",
-                        articleClicks = 0
-                    };
-
-                    // Add to database
-
-                    _semaphore.Wait();
-                    try
-                    {
-                        if (DataLayer.Data.Article.Any(article => article.guid == newArticle.guid))
+                        var newArticle = new Article()
                         {
-                            // article already exists, skip insertion
-                            return;
+                            title = itemNode.SelectSingleNode("title").InnerText,
+                            description = ExtractClearDescriptionFromItem(itemNode),
+                            link = itemNode.SelectSingleNode("link").InnerText,
+                            image = ExtractImageFromItem(itemNode, nsmgr),
+                            createdDate = ExtractDateTimeFitSQL(itemNode.SelectSingleNode("pubDate").InnerText.Trim()),
+                            categoryID = category.id,
+                            guid = $"{itemNode.SelectSingleNode("title").InnerText}:{itemNode.SelectSingleNode("pubDate").InnerText}",
+                            articleClicks = 0
+                        };
+
+                        // Add to database
+
+                        _semaphore.Wait();
+                        try
+                        {
+                            if (DataLayer.Data.Article.Any(article => article.guid == newArticle.guid))
+                            {
+                                // article already exists, skip insertion
+                                return;
+                            }
+
+                            // article does not exist, insert it
+                            DataLayer.Data.ArticleRepository.Insert(newArticle);
+                        }
+                        finally
+                        {
+                            _semaphore.Release();
                         }
 
-                        // article does not exist, insert it
-                        DataLayer.Data.ArticleRepository.Insert(newArticle);
                     }
-                    finally
-                    {
-                        _semaphore.Release();
-                    }
-
                 }
+                
+                
             }
             catch (SqlException ex)
             {

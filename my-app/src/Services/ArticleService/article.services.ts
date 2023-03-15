@@ -38,3 +38,33 @@ export const AddOrUpdateUserClicks = async (
     console.error("Error updating article:", error);
   }
 };
+
+export const fetchPopularArticles = async (
+  email: string | undefined
+): Promise<Article[]> => {
+  try {
+    const response = await axios.get<Article[]>(
+      `http://localhost:5014/Article/Popular?email=${email}`
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch articles");
+  }
+};
+
+export const fetchCuriousArticles = async (
+  email: string | undefined
+): Promise<Article[]> => {
+  try {
+    const response = await axios.get<Article[]>(
+      `http://localhost:5014/Article/Curious?email=${email}`
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch articles");
+  }
+};

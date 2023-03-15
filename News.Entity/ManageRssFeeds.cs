@@ -59,15 +59,12 @@ namespace News.Entity
                         _logger.AddLogItemToQueue("Can't find categories", null, "Error");
                     }
                 }
-
-                
-
                 
             }
-            catch (Exception exc)
+            catch (Exception ex)
             {
 
-                _logger.AddLogItemToQueue(exc.Message, exc, "Exception");
+                _logger.AddLogItemToQueue(ex.Message, ex, "Exception");
             }
             
         }
