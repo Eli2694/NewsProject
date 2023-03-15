@@ -1,3 +1,28 @@
 Event - 15/03/2023 08:42:46 - Get Rss Feeds And Send Http Request For Information About News
 Event - 15/03/2023 09:28:56 - Get Rss Feeds And Send Http Request For Information About News
 Event - 15/03/2023 09:39:11 - Get Rss Feeds And Send Http Request For Information About News
+Event - 15/03/2023 17:40:21 - Get Rss Feeds And Send Http Request For Information About News
+Exception - 15/03/2023 17:42:39 -    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass41_0.<GetResults>b__0()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__31_0()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at News.Entity.LogicForApi.ArticleEntity.MainUserArticles(String email) in C:\Users\User\source\repos\News\News.Entity\LogicForApi\ArticleEntity.cs:line 29
+   at News.API.Controllers.ArticleController.GetMainUserArticles(String email) in C:\Users\User\source\repos\News\News.API\Controllers\ArticleController.cs:line 21, An error occurred while executing the command definition. See the inner exception for details.
+Event - 15/03/2023 17:52:01 - Get Rss Feeds And Send Http Request For Information About News
+Event - 15/03/2023 17:56:50 - Get Rss Feeds And Send Http Request For Information About News
+Exception - 15/03/2023 17:56:52 -    at System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   at System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   at System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass41_0.<GetResults>b__0()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__31_0()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at News.Entity.LogicForApi.UserEntity.GetUserCategoriesFromDb(String email) in C:\Users\User\source\repos\News\News.Entity\LogicForApi\UserEntity.cs:line 66
+   at News.API.Controllers.UserController.GetUserCategories(String email) in C:\Users\User\source\repos\News\News.API\Controllers\UserController.cs:line 73, An error occurred while executing the command definition. See the inner exception for details.

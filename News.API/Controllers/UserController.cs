@@ -18,11 +18,14 @@ namespace News.API.Controllers
 
             try
             {
-                Users user = DataLayer.Data.Users.ToList().Find(x => x.email == email);
-                if (user == null)
+                string answer = MainManager.Instance.UserEnt.AddUserToDatabase(email);
+                if (answer == "Ok")
                 {
-                    DataLayer.Data.UsersRepository.Insert(new Users() { email = email });
                     return Ok();
+                }
+                else
+                {
+                    return NotFound(answer);
                 }
             }
             catch (Exception ex)
@@ -32,7 +35,6 @@ namespace News.API.Controllers
                 return BadRequest();
             }   
 
-            return NoContent();
         }
 
         [HttpPut]
@@ -42,21 +44,15 @@ namespace News.API.Controllers
 
             try
             {
-                Users user = DataLayer.Data.Users.ToList().Find(x => x.email == updateUser.email);
-                if (user != null)
+                string answer = MainManager.Instance.UserEnt.UpdateUserCategoriesInDB(updateUser);
+                if (answer == "Ok")
                 {
-                    user.firstCategoryID = updateUser.firstCategoryID;
-                    user.secondCategoryID = updateUser.secondCategoryID;
-                    user.thirdCategoryID = updateUser.thirdCategoryID;
-
-                    DataLayer.Data.UsersRepository.Update(user);
-                    return Ok("Success");
+                    return Ok();
                 }
                 else
                 {
-                    return NotFound();
+                    return NotFound(answer);
                 }
-
             }
             catch (Exception ex)
             {
@@ -74,38 +70,14 @@ namespace News.API.Controllers
 
             try
             {
-                Users user = DataLayer.Data.Users.ToList().Find(x => x.email == email);
-                if (user != null)
+                object answer = MainManager.Instance.UserEnt.GetUserCategoriesFromDb(email);
+                if(answer is string)
                 {
-                    if (user.firstCategoryID == 0 && user.secondCategoryID == 0 && user.thirdCategoryID == 0)
-                    {
-                        return NotFound("User does not have any categories selected.");
-                    }
-                    else
-                    {
-                        // First get all categories
-                        var allCategories = DataLayer.Data.CategoryRepository.GetAll();
-
-                        // Then select specific categories
-                        var userCategories = allCategories
-                            .Where(c => c.id == user.firstCategoryID || c.id == user.secondCategoryID || c.id == user.thirdCategoryID)
-                            .ToList();
-
-                        // if the count of extracted categories is exactly 3
-                        if (userCategories.Count() == 3)
-                        {
-                            return Ok(userCategories);
-                        }
-                        else
-                        {
-                            return NoContent();
-                        }
-                    }
-                   
+                   return NotFound((string)answer);
                 }
                 else
                 {
-                    return NotFound();
+                    return Ok(answer);
                 }
             }
             catch (Exception ex)

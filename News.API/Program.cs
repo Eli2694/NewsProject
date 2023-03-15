@@ -29,7 +29,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // Init Main Manager Constructor
-MainManager.CreateInstance();
+//MainManager.CreateInstance();
 
 // Enable CORS
 app.UseCors("AllowAll");

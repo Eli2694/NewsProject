@@ -10,22 +10,19 @@ namespace News.API.Controllers
     [Route("[controller]")]
     public class CategoryController : ControllerBase
     {
-        public CategoryController() { }
-
-       
+        public CategoryController() { }   
 
         [HttpGet]      
         public IActionResult GetAllCategories()
         {
             try
             {
-                var categories = DataLayer.Data.CategoryRepository.GetAll();
+                var categories = MainManager.Instance.CategoryEnt.AllCategories();
+                if(categories == null) { return  NotFound("There are no categories in the database"); }
                 return Ok(categories);
             }
             catch (Exception ex)
-            {
-               
-                
+            {            
                 MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
                 return BadRequest();
             }
