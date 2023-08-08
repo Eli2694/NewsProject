@@ -35,7 +35,7 @@ namespace News.DAL
         private DataLayer() : base(connectionString)
         {
 
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DataLayer>());
+            Database.SetInitializer(new CreateDatabaseIfNotExists<DataLayer>());
 
             _usersRepository = new Repository<Users>(this);
             _articleRepository = new Repository<Article>(this);
@@ -72,22 +72,27 @@ namespace News.DAL
             }
         }
 
+        private static object seedLock = new object(); // Shared lock object
+
         private void Seed()
         {
-            // Seed categories
-            var categories = GetRSSFeeds();
-            Categories.AddRange(categories);
-
-            // Seed configuration
-            Model.Configuration SeedConfiguration = new News.Model.Configuration()
+            lock (seedLock) // Acquire the lock
             {
-                auth0Bearer = "",              
-            };
+                if (!Categories.Any())
+                {
+                    var categories = GetRSSFeeds();
 
-            Configuration.Add(SeedConfiguration);
+                    foreach (var category in categories)
+                    {
+                        if (!Categories.Any(c => c.name == category.name && c.source == category.source))
+                        {
+                            Categories.Add(category);
+                        }
+                    }
 
-            //שמירת שינויים במסד נתונים
-            SaveChanges();
+                    SaveChanges();
+                }
+            } 
         }
 
 
@@ -101,7 +106,6 @@ namespace News.DAL
         public DbSet<UserClick> UserClicks { get; set; }
 
         public DbSet<Model.Configuration> Configuration { get; set; }
-
         
     }
 }

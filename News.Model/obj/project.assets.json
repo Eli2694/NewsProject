@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\News\\News.Model\\News.Model.csproj",
+      "projectUniqueName": "C:\\ZionNet\\news\\NewsProject\\News.Model\\News.Model.csproj",
       "projectName": "News.Model",
-      "projectPath": "C:\\Users\\User\\source\\repos\\News\\News.Model\\News.Model.csproj",
+      "projectPath": "C:\\ZionNet\\news\\NewsProject\\News.Model\\News.Model.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\News\\News.Model\\obj\\",
+      "outputPath": "C:\\ZionNet\\news\\NewsProject\\News.Model\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -66,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

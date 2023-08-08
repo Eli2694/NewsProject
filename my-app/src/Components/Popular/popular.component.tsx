@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Article } from "../../Models/Article";
 import { fetchPopularArticles } from "../../Services/ArticleService/article.services";
 import { ArticleTemplate } from "../MainArticle/articleTemplate.component";
@@ -36,10 +36,12 @@ export const Popular = () => {
       {isLoading ? (
         <div className="loading">
           <p>Loading articles...</p>
-          <p>Please Choose 3 Categories!</p>
+          <p>Please choose 3 categories if you haven't done it.</p>
         </div>
       ) : error ? (
         <p>{error}</p>
+      ) : articleList.length === 0 ? ( // Check if the array is empty
+        <p>No popular articles found.</p>
       ) : (
         articleList.map((article: Article) => (
           <ArticleTemplate key={article.guid} article={article} />

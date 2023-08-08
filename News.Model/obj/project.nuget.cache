@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qhYdCSYA+bo24dP4QvsOAmQk20CJBXekePvwPqUepba15kynBm5IN5EtsRShWfUoUdyxYN+ak1LkLtpOMiv1ZA==",
+  "dgSpecHash": "eRwenjkljnZOOkF86i6VaWJ3yHAuEu1A6VpKAGTP33aJ5yHSLXmNhma5coNMOd+nm4xhQH6yS58xkOFh2aAxdg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\source\\repos\\News\\News.Model\\News.Model.csproj",
+  "projectFilePath": "C:\\ZionNet\\news\\NewsProject\\News.Model\\News.Model.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

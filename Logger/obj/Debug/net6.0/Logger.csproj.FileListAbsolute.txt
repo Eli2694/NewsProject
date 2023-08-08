@@ -10,3 +10,15 @@ C:\Users\User\source\repos\News\Logger\obj\Debug\net6.0\Logger.dll
 C:\Users\User\source\repos\News\Logger\obj\Debug\net6.0\refint\Logger.dll
 C:\Users\User\source\repos\News\Logger\obj\Debug\net6.0\Logger.pdb
 C:\Users\User\source\repos\News\Logger\obj\Debug\net6.0\ref\Logger.dll
+C:\ZionNet\news\NewsProject\Logger\bin\Debug\net6.0\Logger.deps.json
+C:\ZionNet\news\NewsProject\Logger\bin\Debug\net6.0\Logger.dll
+C:\ZionNet\news\NewsProject\Logger\bin\Debug\net6.0\Logger.pdb
+C:\ZionNet\news\NewsProject\Logger\obj\Debug\net6.0\Logger.csproj.AssemblyReference.cache
+C:\ZionNet\news\NewsProject\Logger\obj\Debug\net6.0\Logger.GeneratedMSBuildEditorConfig.editorconfig
+C:\ZionNet\news\NewsProject\Logger\obj\Debug\net6.0\Logger.AssemblyInfoInputs.cache
+C:\ZionNet\news\NewsProject\Logger\obj\Debug\net6.0\Logger.AssemblyInfo.cs
+C:\ZionNet\news\NewsProject\Logger\obj\Debug\net6.0\Logger.csproj.CoreCompileInputs.cache
+C:\ZionNet\news\NewsProject\Logger\obj\Debug\net6.0\Logger.dll
+C:\ZionNet\news\NewsProject\Logger\obj\Debug\net6.0\refint\Logger.dll
+C:\ZionNet\news\NewsProject\Logger\obj\Debug\net6.0\Logger.pdb
+C:\ZionNet\news\NewsProject\Logger\obj\Debug\net6.0\ref\Logger.dll

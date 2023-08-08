@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\News\\News.API\\News.API.csproj": {}
+    "C:\\ZionNet\\news\\NewsProject\\News.API\\News.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\News\\Logger\\Logger.csproj": {
+    "C:\\ZionNet\\news\\NewsProject\\Logger\\Logger.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\News\\Logger\\Logger.csproj",
+        "projectUniqueName": "C:\\ZionNet\\news\\NewsProject\\Logger\\Logger.csproj",
         "projectName": "Logger",
-        "projectPath": "C:\\Users\\User\\source\\repos\\News\\Logger\\Logger.csproj",
+        "projectPath": "C:\\ZionNet\\news\\NewsProject\\Logger\\Logger.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\News\\Logger\\obj\\",
+        "outputPath": "C:\\ZionNet\\news\\NewsProject\\Logger\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -59,18 +59,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\News\\News.API\\News.API.csproj": {
+    "C:\\ZionNet\\news\\NewsProject\\News.API\\News.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\News\\News.API\\News.API.csproj",
+        "projectUniqueName": "C:\\ZionNet\\news\\NewsProject\\News.API\\News.API.csproj",
         "projectName": "News.API",
-        "projectPath": "C:\\Users\\User\\source\\repos\\News\\News.API\\News.API.csproj",
+        "projectPath": "C:\\ZionNet\\news\\NewsProject\\News.API\\News.API.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\News\\News.API\\obj\\",
+        "outputPath": "C:\\ZionNet\\news\\NewsProject\\News.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -85,17 +85,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\News\\News.Entity\\News.Entity.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\News\\News.Entity\\News.Entity.csproj"
+              "C:\\ZionNet\\news\\NewsProject\\News.Entity\\News.Entity.csproj": {
+                "projectPath": "C:\\ZionNet\\news\\NewsProject\\News.Entity\\News.Entity.csproj"
               },
-              "C:\\Users\\User\\source\\repos\\News\\News.Model\\News.Model.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\News\\News.Model\\News.Model.csproj"
+              "C:\\ZionNet\\news\\NewsProject\\News.Model\\News.Model.csproj": {
+                "projectPath": "C:\\ZionNet\\news\\NewsProject\\News.Model\\News.Model.csproj"
               }
             }
           }
@@ -134,18 +135,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\News\\News.DAL\\News.DAL.csproj": {
+    "C:\\ZionNet\\news\\NewsProject\\News.DAL\\News.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\News\\News.DAL\\News.DAL.csproj",
+        "projectUniqueName": "C:\\ZionNet\\news\\NewsProject\\News.DAL\\News.DAL.csproj",
         "projectName": "News.DAL",
-        "projectPath": "C:\\Users\\User\\source\\repos\\News\\News.DAL\\News.DAL.csproj",
+        "projectPath": "C:\\ZionNet\\news\\NewsProject\\News.DAL\\News.DAL.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\News\\News.DAL\\obj\\",
+        "outputPath": "C:\\ZionNet\\news\\NewsProject\\News.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -166,8 +167,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\News\\News.Model\\News.Model.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\News\\News.Model\\News.Model.csproj"
+              "C:\\ZionNet\\news\\NewsProject\\News.Model\\News.Model.csproj": {
+                "projectPath": "C:\\ZionNet\\news\\NewsProject\\News.Model\\News.Model.csproj"
               }
             }
           }
@@ -203,18 +204,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\News\\News.Entity\\News.Entity.csproj": {
+    "C:\\ZionNet\\news\\NewsProject\\News.Entity\\News.Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\News\\News.Entity\\News.Entity.csproj",
+        "projectUniqueName": "C:\\ZionNet\\news\\NewsProject\\News.Entity\\News.Entity.csproj",
         "projectName": "News.Entity",
-        "projectPath": "C:\\Users\\User\\source\\repos\\News\\News.Entity\\News.Entity.csproj",
+        "projectPath": "C:\\ZionNet\\news\\NewsProject\\News.Entity\\News.Entity.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\News\\News.Entity\\obj\\",
+        "outputPath": "C:\\ZionNet\\news\\NewsProject\\News.Entity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -235,11 +236,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\News\\Logger\\Logger.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\News\\Logger\\Logger.csproj"
+              "C:\\ZionNet\\news\\NewsProject\\Logger\\Logger.csproj": {
+                "projectPath": "C:\\ZionNet\\news\\NewsProject\\Logger\\Logger.csproj"
               },
-              "C:\\Users\\User\\source\\repos\\News\\News.DAL\\News.DAL.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\News\\News.DAL\\News.DAL.csproj"
+              "C:\\ZionNet\\news\\NewsProject\\News.DAL\\News.DAL.csproj": {
+                "projectPath": "C:\\ZionNet\\news\\NewsProject\\News.DAL\\News.DAL.csproj"
               }
             }
           }
@@ -279,18 +280,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\News\\News.Model\\News.Model.csproj": {
+    "C:\\ZionNet\\news\\NewsProject\\News.Model\\News.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\News\\News.Model\\News.Model.csproj",
+        "projectUniqueName": "C:\\ZionNet\\news\\NewsProject\\News.Model\\News.Model.csproj",
         "projectName": "News.Model",
-        "projectPath": "C:\\Users\\User\\source\\repos\\News\\News.Model\\News.Model.csproj",
+        "projectPath": "C:\\ZionNet\\news\\NewsProject\\News.Model\\News.Model.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\News\\News.Model\\obj\\",
+        "outputPath": "C:\\ZionNet\\news\\NewsProject\\News.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -338,7 +339,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1732,11 +1732,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\News\\News.API\\News.API.csproj",
+      "projectUniqueName": "C:\\ZionNet\\news\\NewsProject\\News.API\\News.API.csproj",
       "projectName": "News.API",
-      "projectPath": "C:\\Users\\User\\source\\repos\\News\\News.API\\News.API.csproj",
+      "projectPath": "C:\\ZionNet\\news\\NewsProject\\News.API\\News.API.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\News\\News.API\\obj\\",
+      "outputPath": "C:\\ZionNet\\news\\NewsProject\\News.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1751,17 +1751,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\User\\source\\repos\\News\\News.Entity\\News.Entity.csproj": {
-              "projectPath": "C:\\Users\\User\\source\\repos\\News\\News.Entity\\News.Entity.csproj"
+            "C:\\ZionNet\\news\\NewsProject\\News.Entity\\News.Entity.csproj": {
+              "projectPath": "C:\\ZionNet\\news\\NewsProject\\News.Entity\\News.Entity.csproj"
             },
-            "C:\\Users\\User\\source\\repos\\News\\News.Model\\News.Model.csproj": {
-              "projectPath": "C:\\Users\\User\\source\\repos\\News\\News.Model\\News.Model.csproj"
+            "C:\\ZionNet\\news\\NewsProject\\News.Model\\News.Model.csproj": {
+              "projectPath": "C:\\ZionNet\\news\\NewsProject\\News.Model\\News.Model.csproj"
             }
           }
         }
@@ -1800,7 +1801,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

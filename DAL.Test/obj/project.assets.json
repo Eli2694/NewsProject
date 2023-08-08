@@ -1989,11 +1989,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\News\\DAL.Test\\DAL.Test.csproj",
+      "projectUniqueName": "C:\\ZionNet\\news\\NewsProject\\DAL.Test\\DAL.Test.csproj",
       "projectName": "DAL.Test",
-      "projectPath": "C:\\Users\\User\\source\\repos\\News\\DAL.Test\\DAL.Test.csproj",
+      "projectPath": "C:\\ZionNet\\news\\NewsProject\\DAL.Test\\DAL.Test.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\News\\DAL.Test\\obj\\",
+      "outputPath": "C:\\ZionNet\\news\\NewsProject\\DAL.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2014,8 +2014,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\User\\source\\repos\\News\\News.DAL\\News.DAL.csproj": {
-              "projectPath": "C:\\Users\\User\\source\\repos\\News\\News.DAL\\News.DAL.csproj"
+            "C:\\ZionNet\\news\\NewsProject\\News.DAL\\News.DAL.csproj": {
+              "projectPath": "C:\\ZionNet\\news\\NewsProject\\News.DAL\\News.DAL.csproj"
             }
           }
         }
@@ -2059,7 +2059,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

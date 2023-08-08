@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZbLSX9SYscpP0OJrlqdGAtW5tMDP0VUTfiOLTz+CFgxHT3YQE1jx0KTHrwChyG+mglK/Vq+o8VRoVpSRoNs8FQ==",
+  "dgSpecHash": "zR/KvyUhDmm+XIG2aZb4oO91+7nXBlaI2j8zZ0SRW3m5iSyok0wecEgKxXX2B37LRkmnoP5UeGaaW4g98/5C6g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\source\\repos\\News\\Entity.Test\\Entity.Test.csproj",
+  "projectFilePath": "C:\\ZionNet\\news\\NewsProject\\Entity.Test\\Entity.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\fluentassertions\\6.10.0\\fluentassertions.6.10.0.nupkg.sha512",
