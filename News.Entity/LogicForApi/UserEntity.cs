@@ -12,15 +12,21 @@ namespace News.Entity.LogicForApi
 {
     public class UserEntity 
     {
+        private readonly DataLayer _dataLayer;
+
+        public UserEntity(DataLayer dataLayer)
+        {
+            _dataLayer = dataLayer;
+        }
         public string AddUserToDatabase(string email)
         {
             try
             {
-                Users user = DataLayer.Data.Users.ToList().Find(x => x.email == email);
+                Users user = _dataLayer.Users.ToList().Find(x => x.email == email);
 
                 if (user == null)
                 {
-                    DataLayer.Data.UsersRepository.Insert(new Users() { email = email });
+                    _dataLayer.UsersRepository.Insert(new Users() { email = email });
                     return "Ok";
                 }
 
@@ -37,14 +43,14 @@ namespace News.Entity.LogicForApi
         {
             try
             {
-                Users user = DataLayer.Data.Users.ToList().Find(x => x.email == updateUser.email);
+                Users user = _dataLayer.Users.ToList().Find(x => x.email == updateUser.email);
                 if (user != null)
                 {
                     user.firstCategoryID = updateUser.firstCategoryID;
                     user.secondCategoryID = updateUser.secondCategoryID;
                     user.thirdCategoryID = updateUser.thirdCategoryID;
 
-                    DataLayer.Data.UsersRepository.Update(user);
+                    _dataLayer.UsersRepository.Update(user);
                     return "Ok";
                 }
                 else
@@ -63,7 +69,7 @@ namespace News.Entity.LogicForApi
         {
             try
             {
-                Users user = DataLayer.Data.Users.ToList().Find(x => x.email == email);
+                Users user = _dataLayer.Users.ToList().Find(x => x.email == email);
 
                 if (user != null)
                 {
@@ -74,7 +80,7 @@ namespace News.Entity.LogicForApi
                     else
                     {
                         // First get all categories
-                        var allCategories = DataLayer.Data.CategoryRepository.GetAll();
+                        var allCategories = _dataLayer.CategoryRepository.GetAll();
 
                         // Then select specific categories
                         var userCategories = allCategories

@@ -20,9 +20,12 @@ namespace News.Entity.Websites
     {
         
         private LogManager _logger;
-        public Globes(LogManager log):base(log)
+        private readonly DataLayer _dataLayer;
+
+        public Globes(DataLayer dataLayer, LogManager log): base(dataLayer,log)
         {
             _logger = LogInstance;
+            _dataLayer = dataLayer;
         }
 
 
@@ -56,14 +59,14 @@ namespace News.Entity.Websites
                         _semaphore.Wait();
                         try
                         {
-                            if (DataLayer.Data.Article.Any(article => article.guid == newArticle.guid))
+                            if (_dataLayer.Article.Any(article => article.guid == newArticle.guid))
                             {
                                 // article already exists, skip insertion
                                 return;
                             }
 
                             // article does not exist, insert it
-                            DataLayer.Data.ArticleRepository.Insert(newArticle);
+                            _dataLayer.ArticleRepository.Insert(newArticle);
                         }
                         finally
                         {
@@ -74,11 +77,6 @@ namespace News.Entity.Websites
                 }
                 
                 
-            }
-            catch (SqlException ex)
-            {
-                _logger.AddLogItemToQueue(ex.Message, ex, "Exception");
-
             }
             catch (ArgumentException ex)
             {

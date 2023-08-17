@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Logger;
+﻿using Logger;
 using News.DAL;
 using News.Entity.LogicForApi;
 using News.Entity.Websites;
-using static Logger.LogManager;
 
 namespace News.Entity
 {
@@ -23,45 +17,19 @@ namespace News.Entity
         public CategoryEntity CategoryEnt { get; set; }
         public UserEntity UserEnt { get; set; }
 
-
-        //constructor
-        private MainManager()
+        // Constructor with dependency injection
+        public MainManager(DataLayer dataLayer, LogManager log)
         {
-            init();
+            Log = log;
+            Feeds = new ManageRssFeeds(dataLayer,Log);
+            Globes = new Globes(dataLayer, Log);
+            Maariv = new Maariv(dataLayer, Log);
+            Ynet = new Ynet(dataLayer,Log);
+            Walla = new Walla(dataLayer, Log);
+            ArticleEnt = new ArticleEntity(dataLayer);
+            CategoryEnt = new CategoryEntity(dataLayer);
+            UserEnt = new UserEntity(dataLayer);
         }
-
-        // Singleton variable
-        private static readonly MainManager _instance = new MainManager();
-        public static MainManager Instance
-        {
-            get { return _instance; }
-        }
-
-        private void init()
-        {  
-
-            Target(LogProvider.File);
-            Log = new LogManager();
-
-            Feeds = new ManageRssFeeds(Log);
-
-            Globes = new Globes(Log);
-            Maariv = new Maariv(Log); 
-            Ynet = new Ynet(Log);
-            Walla = new Walla(Log);
-
-            ArticleEnt = new ArticleEntity();
-            CategoryEnt = new CategoryEntity();
-            UserEnt = new UserEntity();
-
-        }
-
-        // Class Factory - Test
-        public static MainManager CreateInstance()
-        {
-            return new MainManager();
-        }
-
-
     }
 }
+

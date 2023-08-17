@@ -1,0 +1,47 @@
+version: '3.4'
+
+services:
+  news.api:
+    container_name: news.server
+    image: ${DOCKER_REGISTRY-}newsapi
+    build:
+      context: .
+      dockerfile: News.API/Dockerfile
+    depends_on:
+      - mssql
+    environment:
+      - DB_HOST=mssql
+      - DB_NAME=KLA_Project
+      - DB_SA_PASSWORD=password@12345
+    ports:
+      - 80:5014
+  
+  mssql:
+    container_name: mssql
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    user: root
+    restart: always
+    hostname: 'mssql'
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=password@12345  
+    ports:
+     - 1433:1433
+    volumes:
+     - data:/var/opt/mssql/data
+     - log:/var/opt/mssql/log
+
+  frontend:
+    container_name: news.frontend
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    depends_on:
+      - mssql
+    ports:
+      - 80:8080
+
+volumes:
+  data:
+  log:
+

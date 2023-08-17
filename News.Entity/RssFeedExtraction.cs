@@ -19,9 +19,12 @@ namespace News.Entity
         public static SemaphoreSlim _semaphore = new SemaphoreSlim(1);
 
         private LogManager _logger;
-        public RssFeedExtraction(LogManager log) : base(log)
+        private readonly DataLayer _dataLayer;
+
+        public RssFeedExtraction(DataLayer dataLayer,LogManager log) : base(log)
         {
             _logger = LogInstance;
+            _dataLayer = dataLayer;
         }
 
         public virtual void FeedExtraction(XmlDocument xmlDoc, Category category)
@@ -53,14 +56,14 @@ namespace News.Entity
                         _semaphore.Wait();
                         try
                         {
-                            if (DataLayer.Data.Article.Any(article => article.guid == newArticle.guid))
+                            if (_dataLayer.Article.Any(article => article.guid == newArticle.guid))
                             {
                                 // article already exists, skip insertion
                                 return;
                             }
 
                             // article does not exist, insert it
-                            DataLayer.Data.ArticleRepository.Insert(newArticle);
+                            _dataLayer.ArticleRepository.Insert(newArticle);
                         }
                         finally
                         {
@@ -70,11 +73,6 @@ namespace News.Entity
                     }
                 }
                 
-            }
-            catch (SqlException ex)
-            {
-                _logger.AddLogItemToQueue(ex.Message, ex, "Exception");
-
             }
             catch (ArgumentException ex)
             {

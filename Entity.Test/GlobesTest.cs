@@ -18,13 +18,19 @@ namespace Entity.Test
     [TestFixture]
     public class GlobesTest
     {
+        private readonly DataLayer _dataLayer;
+
+        public GlobesTest(DataLayer dataLayer)
+        {
+            _dataLayer = dataLayer;
+        }
 
         [Test, SetUp]
         [Category("Database")]
         public void CleanDB()
         {
-            var articleList = DataLayer.Data.ArticleRepository.GetAll();
-            DataLayer.Data.Article.RemoveRange(articleList);
+            var articleList = _dataLayer.ArticleRepository.GetAll();
+            _dataLayer.Article.RemoveRange(articleList);
         }
 
         [Test, Order(0)]
@@ -67,7 +73,7 @@ namespace Entity.Test
 
         public void CheckArticlesDB()
         {
-            var articleList = DataLayer.Data.ArticleRepository.GetAll();
+            var articleList = _dataLayer.ArticleRepository.GetAll();
             articleList.Should().HaveCountGreaterThan(0);
 
         }

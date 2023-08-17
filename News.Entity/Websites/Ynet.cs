@@ -15,7 +15,7 @@ namespace News.Entity.Websites
     public class Ynet : RssFeedExtraction, IWebsite
     {
         
-        public Ynet(LogManager log) : base(log)
+        public Ynet(DataLayer dataLayer,LogManager log) : base(dataLayer, log)
         {
             
         }

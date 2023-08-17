@@ -11,11 +11,17 @@ namespace News.Entity.LogicForApi
 {
     public class CategoryEntity 
     {
+        private readonly DataLayer _dataLayer;
+
+        public CategoryEntity(DataLayer dataLayer)
+        {
+            _dataLayer = dataLayer;
+        }
         public object AllCategories()
         {
             try
             {
-                return DataLayer.Data.CategoryRepository.GetAll();
+                return _dataLayer.CategoryRepository.GetAll();
             }
             catch (Exception)
             {

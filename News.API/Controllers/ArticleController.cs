@@ -8,7 +8,13 @@ namespace News.API.Controllers
     [ApiController]
     [Route("[controller]")]
     public class ArticleController : ControllerBase
-    {     
+    {
+        private readonly MainManager _mainManager;
+
+        public ArticleController(MainManager mainManager)
+        {
+            _mainManager = mainManager;
+        }
 
         [HttpGet]
         public IActionResult GetMainUserArticles(string email)
@@ -18,7 +24,7 @@ namespace News.API.Controllers
 
             try
             {
-                var articles = MainManager.Instance.ArticleEnt.MainUserArticles(email);
+                var articles = _mainManager.ArticleEnt.MainUserArticles(email);
                 if(articles is string)
                 {
                     return NotFound(articles);
@@ -31,7 +37,7 @@ namespace News.API.Controllers
             }
             catch (Exception ex)
             {
-                MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
+                _mainManager.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
                 return BadRequest();
             }
         }
@@ -44,7 +50,7 @@ namespace News.API.Controllers
 
             try
             {
-                string answer = MainManager.Instance.ArticleEnt.UpdateNumberOfArticleClicks(article);
+                string answer = _mainManager.ArticleEnt.UpdateNumberOfArticleClicks(article);
                 if(answer == "Ok")
                 {
                     return Ok();
@@ -57,7 +63,7 @@ namespace News.API.Controllers
             catch (Exception ex)
             {
 
-                MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
+                _mainManager.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
                 return BadRequest();
             }      
             
@@ -71,7 +77,7 @@ namespace News.API.Controllers
 
             try
             {
-                string answer = MainManager.Instance.ArticleEnt.UpdateTableUserClicksDB(article,email);
+                string answer = _mainManager.ArticleEnt.UpdateTableUserClicksDB(article,email);
 
                 if (answer == "Ok")
                 {
@@ -86,7 +92,7 @@ namespace News.API.Controllers
             catch (Exception ex)
             {
 
-                MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
+                _mainManager.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
                 return BadRequest();
             }
        
@@ -101,7 +107,7 @@ namespace News.API.Controllers
 
             try
             {
-                var articles = MainManager.Instance.ArticleEnt.PopularArticles(email);
+                var articles = _mainManager.ArticleEnt.PopularArticles(email);
                 if (articles is string)
                 {
                     return NotFound(articles);
@@ -114,7 +120,7 @@ namespace News.API.Controllers
             catch (Exception ex)
             {
 
-                MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
+                _mainManager.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
                 return BadRequest();
             }
     
@@ -127,7 +133,7 @@ namespace News.API.Controllers
             if (email == null) { return BadRequest(); }
             try
             {
-                var articles = MainManager.Instance.ArticleEnt.CuriousArticles(email);
+                var articles = _mainManager.ArticleEnt.CuriousArticles(email);
                 if (articles is string)
                 {
                     return NotFound(articles);
@@ -140,7 +146,7 @@ namespace News.API.Controllers
             catch (Exception ex)
             {
 
-                MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
+                _mainManager.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
                 return BadRequest();
             }
 

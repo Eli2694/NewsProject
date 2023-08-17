@@ -9,7 +9,12 @@ namespace News.API.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        
+        private readonly MainManager _mainManager;
+
+        public UserController(MainManager mainManager)
+        {
+            _mainManager = mainManager;
+        }
 
         [HttpPost("{email}")]
         public IActionResult AddUserToDB(string email)
@@ -18,7 +23,7 @@ namespace News.API.Controllers
 
             try
             {
-                string answer = MainManager.Instance.UserEnt.AddUserToDatabase(email);
+                string answer = _mainManager.UserEnt.AddUserToDatabase(email);
                 if (answer == "Ok")
                 {
                     return Ok();
@@ -31,7 +36,7 @@ namespace News.API.Controllers
             catch (Exception ex)
             {
 
-                MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex,"Exception");
+                _mainManager.Log.AddLogItemToQueue(ex.Message, ex,"Exception");
                 return BadRequest();
             }   
 
@@ -44,7 +49,7 @@ namespace News.API.Controllers
 
             try
             {
-                string answer = MainManager.Instance.UserEnt.UpdateUserCategoriesInDB(updateUser);
+                string answer = _mainManager.UserEnt.UpdateUserCategoriesInDB(updateUser);
                 if (answer == "Ok")
                 {
                     return Ok();
@@ -56,8 +61,7 @@ namespace News.API.Controllers
             }
             catch (Exception ex)
             {
-
-                MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
+                _mainManager.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
                 return BadRequest();
             }
 
@@ -70,7 +74,7 @@ namespace News.API.Controllers
 
             try
             {
-                object answer = MainManager.Instance.UserEnt.GetUserCategoriesFromDb(email);
+                object answer = _mainManager.UserEnt.GetUserCategoriesFromDb(email);
                 if(answer is string)
                 {
                    return NotFound((string)answer);
@@ -83,7 +87,7 @@ namespace News.API.Controllers
             catch (Exception ex)
             {
 
-                MainManager.Instance.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
+                _mainManager.Log.AddLogItemToQueue(ex.Message, ex, "Exception");
                 return BadRequest();
             }
         }

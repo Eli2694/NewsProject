@@ -1,36 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Logger;
+﻿using Logger;
 using News.DAL;
 using News.Entity.Base;
 using News.Model;
-using System.Net.Http;
 using System.Xml;
-using System.ServiceModel.Syndication;
 using News.Entity.Websites;
-using static Logger.ILogger;
-using System.Collections;
 
 namespace News.Entity
 {
-    
+
     public class ManageRssFeeds : BaseEntity
     {
         private LogManager _logger;
         private IEnumerable<Category>? _categories;
         private IWebsite _website;
+        private readonly DataLayer _dataLayer;
+
         //public Queue<XmlDocument> _xmlContentQueue;
         //Task queueTask = null;
 
-        public ManageRssFeeds(LogManager log) : base(log)
+        public ManageRssFeeds(DataLayer dataLayer, LogManager log) : base(log)
         {
             _logger = LogInstance; // LogInstance from BaseNews
-
+            _dataLayer = dataLayer;
             Task.Run(InitFeeds);
-           
+            
         }
 
         private void InitFeeds()
@@ -42,7 +35,7 @@ namespace News.Entity
             {
                 while (true) 
                 {
-                    _categories = DataLayer.Data.CategoryRepository.GetAll();
+                    _categories = _dataLayer.CategoryRepository.GetAll();
 
                     if (_categories != null)
                     {
@@ -111,16 +104,16 @@ namespace News.Entity
             switch (category.source) 
             {
                 case "globes":
-                    _website = new Globes(_logger);
+                    _website = new Globes(_dataLayer,_logger);
                     break;
                 case "ynet":
-                    _website = new Ynet(_logger);
+                    _website = new Ynet(_dataLayer, _logger);
                     break;
                 case "maariv":
-                    _website = new Maariv(_logger);
+                    _website = new Maariv(_dataLayer,_logger);
                     break;
                 case "walla":
-                   _website = new Walla(_logger);
+                   _website = new Walla(_dataLayer,_logger);
                     break;
                 default:
                     _logger.AddLogItemToQueue("Category source was not found", null, "Error");

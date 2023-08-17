@@ -14,7 +14,7 @@ namespace News.Entity.Websites
 {
     public class Maariv : RssFeedExtraction, IWebsite
     {       
-        public Maariv(LogManager log) : base(log)
+        public Maariv(DataLayer dataLayer, LogManager log) : base(dataLayer,log)
         {
             
         }      

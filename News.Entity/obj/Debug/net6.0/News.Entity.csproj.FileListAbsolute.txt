@@ -20,7 +20,6 @@ C:\Users\User\source\repos\News\News.Entity\obj\Debug\net6.0\ref\News.Entity.dll
 C:\Users\User\source\repos\News\News.Entity\bin\Debug\net6.0\News.Entity.runtimeconfig.json
 C:\Users\User\source\repos\News\News.Entity\obj\Debug\net6.0\News.Entity.genruntimeconfig.cache
 C:\ZionNet\news\NewsProject\News.Entity\bin\Debug\net6.0\News.Entity.deps.json
-C:\ZionNet\news\NewsProject\News.Entity\bin\Debug\net6.0\News.Entity.runtimeconfig.json
 C:\ZionNet\news\NewsProject\News.Entity\bin\Debug\net6.0\News.Entity.dll
 C:\ZionNet\news\NewsProject\News.Entity\bin\Debug\net6.0\News.Entity.pdb
 C:\ZionNet\news\NewsProject\News.Entity\bin\Debug\net6.0\Logger.dll
@@ -38,5 +37,4 @@ C:\ZionNet\news\NewsProject\News.Entity\obj\Debug\net6.0\News.Entity.csproj.Copy
 C:\ZionNet\news\NewsProject\News.Entity\obj\Debug\net6.0\News.Entity.dll
 C:\ZionNet\news\NewsProject\News.Entity\obj\Debug\net6.0\refint\News.Entity.dll
 C:\ZionNet\news\NewsProject\News.Entity\obj\Debug\net6.0\News.Entity.pdb
-C:\ZionNet\news\NewsProject\News.Entity\obj\Debug\net6.0\News.Entity.genruntimeconfig.cache
 C:\ZionNet\news\NewsProject\News.Entity\obj\Debug\net6.0\ref\News.Entity.dll

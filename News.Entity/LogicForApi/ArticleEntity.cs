@@ -1,24 +1,22 @@
-﻿using Logger;
-using Microsoft.AspNetCore.Mvc;
-using News.DAL;
-using News.Entity.Base;
+﻿using News.DAL;
 using News.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace News.Entity.LogicForApi
 {
     public class ArticleEntity 
     {
-       
+
+        private readonly DataLayer _dataLayer;
+
+        public ArticleEntity(DataLayer dataLayer)
+        {
+            _dataLayer = dataLayer;
+        }
         public object MainUserArticles(string email)
         {
             try
             {
-                Users user = DataLayer.Data.Users.FirstOrDefault(u => u.email == email);
+                Users user = _dataLayer.Users.FirstOrDefault(u => u.email == email);
                 if (user == null)
                 {
                     return "User Not Found In DB";
@@ -26,7 +24,7 @@ namespace News.Entity.LogicForApi
                 else
                 {
 
-                    var articles = DataLayer.Data.Article
+                    var articles = _dataLayer.Article
                                                     .Where(a =>
                                                         (user.firstCategoryID != 0 && a.categoryID == user.firstCategoryID) ||
                                                         (user.secondCategoryID != 0 && a.categoryID == user.secondCategoryID) ||
@@ -56,11 +54,11 @@ namespace News.Entity.LogicForApi
         {
             try
             {
-                Article art = DataLayer.Data.ArticleRepository.GetById(article.id);
+                Article art = _dataLayer.ArticleRepository.GetById(article.id);
                 if (art != null)
                 {
                     art.articleClicks = art.articleClicks + 1;
-                    DataLayer.Data.ArticleRepository.Update(art);
+                    _dataLayer.ArticleRepository.Update(art);
                     return "Ok";
                 }
 
@@ -78,7 +76,7 @@ namespace News.Entity.LogicForApi
 
             try
             {
-                Users user = DataLayer.Data.Users.FirstOrDefault(u => u.email == email);
+                Users user = _dataLayer.Users.FirstOrDefault(u => u.email == email);
 
                 if (user == null)
                 {
@@ -86,7 +84,7 @@ namespace News.Entity.LogicForApi
                 }
                 else
                 {
-                    UserClick userClick = DataLayer.Data.UserClickRepository.GetById(user.id);
+                    UserClick userClick = _dataLayer.UserClickRepository.GetById(user.id);
                     if (userClick == null)
                     {
                         userClick = new UserClick()
@@ -96,13 +94,13 @@ namespace News.Entity.LogicForApi
                             numberOfClicks = 1
                         };
 
-                        DataLayer.Data.UserClickRepository.Insert(userClick);
+                        _dataLayer.UserClickRepository.Insert(userClick);
                         return "Ok";
                     }
                     else
                     {
                         userClick.numberOfClicks = userClick.numberOfClicks + 1;
-                        DataLayer.Data.UserClickRepository.Update(userClick);
+                        _dataLayer.UserClickRepository.Update(userClick);
                         return "Ok";
                     }
 
@@ -120,14 +118,14 @@ namespace News.Entity.LogicForApi
         {
             try
             {
-                Users user = DataLayer.Data.Users.FirstOrDefault(u => u.email == email);
+                Users user = _dataLayer.Users.FirstOrDefault(u => u.email == email);
                 if (user == null)
                 {
                     return "User Not Found In DB";
                 }
                 else
                 {
-                    var popularArticles = DataLayer.Data.Article
+                    var popularArticles = _dataLayer.Article
                         .Where(a => a.articleClicks > 0 && (a.categoryID == user.firstCategoryID || a.categoryID == user.secondCategoryID || a.categoryID == user.thirdCategoryID))
                         .OrderByDescending(a => a.articleClicks)
                         .Take(10)
@@ -148,12 +146,12 @@ namespace News.Entity.LogicForApi
         {
             try
             {
-                Users user = DataLayer.Data.Users.FirstOrDefault(u => u.email == email);
+                Users user = _dataLayer.Users.FirstOrDefault(u => u.email == email);
                 if (user != null)
                 {
-                    var unclickedArticles = DataLayer.Data.Article
+                    var unclickedArticles = _dataLayer.Article
                                                             .GroupJoin(
-                                                                DataLayer.Data.UserClicks.Where(u => u.userId == user.id),
+                                                                _dataLayer.UserClicks.Where(u => u.userId == user.id),
                                                                 a => a.id,
                                                                 uc => uc.articleID,
                                                                 (a, uc) => new { Article = a, UserClicks = uc })

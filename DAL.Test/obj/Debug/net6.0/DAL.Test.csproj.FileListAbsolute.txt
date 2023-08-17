@@ -121,3 +121,11 @@ C:\Users\User\source\repos\News\DAL.Test\obj\Debug\net6.0\refint\DAL.Test.dll
 C:\Users\User\source\repos\News\DAL.Test\obj\Debug\net6.0\DAL.Test.pdb
 C:\Users\User\source\repos\News\DAL.Test\obj\Debug\net6.0\DAL.Test.genruntimeconfig.cache
 C:\Users\User\source\repos\News\DAL.Test\obj\Debug\net6.0\ref\DAL.Test.dll
+C:\ZionNet\news\NewsProject\DAL.Test\obj\Debug\net6.0\DAL.Test.csproj.AssemblyReference.cache
+C:\ZionNet\news\NewsProject\DAL.Test\obj\Debug\net6.0\DAL.Test.GeneratedMSBuildEditorConfig.editorconfig
+C:\ZionNet\news\NewsProject\DAL.Test\obj\Debug\net6.0\DAL.Test.AssemblyInfoInputs.cache
+C:\ZionNet\news\NewsProject\DAL.Test\obj\Debug\net6.0\DAL.Test.AssemblyInfo.cs
+C:\ZionNet\news\NewsProject\DAL.Test\obj\Debug\net6.0\DAL.Test.csproj.CoreCompileInputs.cache
+C:\ZionNet\news\NewsProject\DAL.Test\obj\Debug\net6.0\DAL.Test.dll
+C:\ZionNet\news\NewsProject\DAL.Test\obj\Debug\net6.0\refint\DAL.Test.dll
+C:\ZionNet\news\NewsProject\DAL.Test\obj\Debug\net6.0\DAL.Test.pdb

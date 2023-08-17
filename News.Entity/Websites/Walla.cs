@@ -15,7 +15,7 @@ namespace News.Entity.Websites
     public class Walla : RssFeedExtraction, IWebsite
     {
         
-        public Walla(LogManager log) : base(log)
+        public Walla(DataLayer dataLayer,LogManager log) : base(dataLayer,log)
         {
             
         }    
